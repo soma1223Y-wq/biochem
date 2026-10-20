@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>アミノ酸の栄養とタンパク質の分解テキスト</title>
+<style>
+:root{
+  --bg:#F2F2F7; --card:#FFFFFF; --fg:#1C1C1E; --fg2s:#6C6C70;
+  --sep:#C6C6C8; --fill:#E9E9EE; --accent:#0A66D9; --accentFill:#007AFF;
+  --accentSoft:#E5F0FF; --ok:#248A3D; --okSoft:#E3F5E7; --ng:#D70015; --ngSoft:#FDE7E9;
+  --warn:#C93400; --warnSoft:#FFF0E3; --nav:rgba(242,242,247,.86);
+  --font:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --card:#1C1C1E; --fg:#F2F2F7; --fg2s:#98989F;
+  --sep:#38383A; --fill:#2C2C2E; --accent:#4DA3FF; --accentFill:#0A84FF;
+  --accentSoft:#0B2540; --ok:#30D158; --okSoft:#12331B; --ng:#FF6961; --ngSoft:#3A1517;
+  --warn:#FF9F0A; --warnSoft:#3A2608; --nav:rgba(18,18,20,.86); color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--navh,49px) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-decoration:none}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
+.nav-in{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:760px;margin:0 auto;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;font-size:14px;font-weight:500;padding:6px 12px;border-radius:980px;color:var(--accent);white-space:nowrap}
+.nav a:hover,.nav a:focus-visible{background:var(--accentSoft);outline:none}
+.wrap{max-width:760px;margin:0 auto;padding-block:8px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding:32px 4px 8px}
+header.top .eyebrow{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.04em}
+h1{font-size:34px;line-height:1.2;font-weight:700;margin:4px 0 6px;letter-spacing:-.01em;text-wrap:balance}
+.byline{color:var(--fg2s);font-size:14px;margin:0}
+h2{font-size:22px;font-weight:700;margin:36px 4px 10px;text-wrap:balance}
+.group{background:var(--card);border-radius:12px;overflow:hidden}
+.group p{margin:0;padding:14px 16px;font-size:15px}
+.list a{display:flex;align-items:center;gap:12px;padding:12px 16px;color:var(--fg);border-top:.5px solid var(--sep)}
+.list a:first-child{border-top:0}
+.list a:hover{background:var(--fill)}
+.list .nm{flex:1;min-width:0;font-weight:500}
+.list .chev{color:var(--fg2s);font-size:18px}
+.list .no{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accentSoft);color:var(--accent);font-weight:700;font-size:13px;flex:none}
+.ch{scroll-margin-top:64px}
+.ch>h2{display:flex;align-items:flex-start;gap:10px;margin:48px 4px 12px}
+.ch>h2 .tt{flex:1;min-width:0;padding-top:1px}
+.cn{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--accentFill);color:#fff;font-size:17px;font-weight:700;flex:none}
+.card{background:var(--card);border-radius:14px;padding:18px 16px;font-size:16px;line-height:1.75}
+.card>p{margin:0 0 12px}
+.card h3{font-size:18px;margin:28px 0 10px;text-wrap:balance}
+.card h3:first-child{margin-top:0}
+.defs{margin:0}.defs dt{font-weight:700;color:var(--accent);margin-top:12px}.defs dd{margin:2px 0 0}
+.pts{padding-left:1.2em;margin:0 0 12px}.pts li{margin:7px 0}
+.tbl{overflow-x:auto;margin:12px 0 16px;border:.5px solid var(--sep);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:.5px solid var(--sep);text-align:left;vertical-align:top}
+.tbl tr:last-child>*{border-bottom:0}
+.tbl thead th{background:var(--fill);font-size:13px;color:var(--fg2s);white-space:nowrap}
+.tbl tbody th{color:var(--accent);min-width:3.5em}
+.tbl table.wide{min-width:620px}
+.tbl td.num{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ox td.o,.ox td.x{text-align:center;font-weight:700;white-space:nowrap}.ox td.o{color:var(--ok)}.ox td.x{color:var(--ng)}
+.box{border-radius:12px;padding:12px 14px;margin:14px 0;font-size:15px;line-height:1.7}
+.box p{margin:4px 0}.bt{font-weight:700;font-size:14px;margin-bottom:2px}
+.box.mem{background:var(--accentSoft)}.mem .bt{color:var(--accent)}
+.box.trap{background:var(--fill)}
+.box.cl{background:var(--warnSoft)}.cl .bt{color:var(--warn)}
+.fm{font-weight:700;text-align:center;margin:10px 0!important;font-size:17px}
+.ex{background:var(--card);border-radius:14px;padding:14px 16px;margin-top:12px;border:1px dashed var(--accent)}
+.et{font-weight:700;color:var(--accent);margin-bottom:6px}
+.ex p{margin:0 0 6px;font-size:15px;line-height:1.7}
+.ex details summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:15px}
+.ex details p{margin-top:8px;padding:10px 12px;background:var(--fill);border-radius:8px}
+.go{display:block;text-align:center;margin-top:16px;padding:12px;border-radius:12px;background:var(--accentSoft);font-weight:600}
+.back{display:block;text-align:center;margin:18px 0 0;font-size:15px}
+footer{color:var(--fg2s);font-size:13px;text-align:center;margin-top:40px}
+.fig{margin:14px 0;padding:0;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;margin:0 auto;font-family:var(--font)}
+.fig figcaption{font-size:13px;color:var(--fg2s);margin-top:6px;line-height:1.55}
+.f-tx{fill:var(--fg);font-size:12px}.f-sm{fill:var(--fg2s);font-size:11px}
+.f-hx{fill:var(--accent);font-size:13px;font-weight:700}.f-hx2{fill:var(--fg);font-size:12px;font-weight:700}
+.f-wx{fill:var(--warn);font-size:12px;font-weight:600}.f-ngx{fill:var(--ng);font-size:12px;font-weight:600}
+.f-mu{stroke:var(--fg2s);stroke-width:1.2;fill:none}.f-bd{stroke:var(--fg);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.f-dash{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:4 3;fill:none}
+.f-curve{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linejoin:round}
+.f-box{fill:var(--fill);stroke:var(--sep)}.f-boxa{fill:var(--accentSoft);stroke:var(--accent)}
+.f-shade{fill:var(--accent);opacity:.12}.f-dot{fill:var(--accent)}.f-pt{fill:var(--ng)}
+.f-arr{fill:var(--fg2s)}
+@media (max-width:420px){h1{font-size:28px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-arr"/></marker></defs></svg>
+<nav class="nav" aria-label="目次"><div class="nav-in"><a href="#top">目次</a><a href="#c1">栄養失調</a><a href="#c2">必須AA</a><a href="#c3">合成</a><a href="#c4">コラーゲン</a><a href="#c5">タンパク質分解</a><a href="#c6">頻出まとめ</a><a href="index.html">問題集へ</a></div></nav>
+<div class="wrap" id="top"><header class="top"><div class="eyebrow">横浜市立大学 医学部 生化学試験対策</div><h1>アミノ酸の栄養とタンパク質の分解テキスト</h1><p class="byline">文責：矢作颯真</p></header>
+<div class="group"><p>タンパク質栄養失調、必須・非必須アミノ酸、アミノ酸の合成、コラーゲン、ユビキチン・プロテアソーム系を整理したテキストです。問題演習は<a href="index.html#s7">短答問題集</a>で。</p></div>
+<h2>目次</h2><div class="group list"><a href="#c1"><span class="no">1</span><span class="nm">タンパク質栄養失調</span><span class="chev">›</span></a><a href="#c2"><span class="no">2</span><span class="nm">必須アミノ酸と非必須アミノ酸</span><span class="chev">›</span></a><a href="#c3"><span class="no">3</span><span class="nm">非必須アミノ酸の合成</span><span class="chev">›</span></a><a href="#c4"><span class="no">4</span><span class="nm">コラーゲンと壊血病</span><span class="chev">›</span></a><a href="#c5"><span class="no">5</span><span class="nm">タンパク質の分解</span><span class="chev">›</span></a><a href="#c6"><span class="no">6</span><span class="nm">頻出ポイントまとめ</span><span class="chev">›</span></a></div>
+<section class="ch" id="c1"><h2><span class="cn">1</span><span class="tt">タンパク質栄養失調</span></h2><div class="card"><p><b>エネルギー低栄養状態（PEM：Protein-Energy Malnutrition）</b>は、世界的に有名な栄養障害。</p><div class="tbl"><table class=""><thead><tr><th></th><th>クワシオルコル</th><th>マラスムス</th></tr></thead><tbody><tr><th>欠乏</th><td><b>タンパク質</b>が主体（エネルギーはほぼ足りる）</td><td>エネルギー全体の欠乏</td></tr><tr><th>所見</th><td><b>浮腫</b>・腹部膨隆、脂肪肝、皮膚病変、低アルブミン血症</td><td>著しい<b>筋肉消耗と皮下脂肪の消失</b>、成長遅延</td></tr></tbody></table></div><div class="box cl"><div class="bt">臨床</div><p>2歳男児、離乳後は炭水化物中心。腹部膨隆・下腿浮腫・脂肪肝・皮膚病変・低アルブミン → <b>クワシオルコル</b>。「高度のやせ」は<b>マラスムス</b>。</p></div></div><div class="ex"><div class="et">例題 1-1</div><p>皮下脂肪の高度な消失による著明なやせを特徴とするのはどれか。<br>A クワシオルコル　B マラスムス　C 脚気　D 壊血病　E ペラグラ</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c2"><h2><span class="cn">2</span><span class="tt">必須アミノ酸と非必須アミノ酸</span></h2><div class="card"><ul class="pts"><li>必須9種：<b>His, Ile, Leu, Lys, Met, Phe, Thr, Trp, Val</b>。非必須11種。</li><li>非必須アミノ酸は<b>1〜3段階</b>で合成でき、必須アミノ酸は10数段階が必要。</li><li><b>アルギニン</b>：尿素回路で合成できるが、成長期は不足し得るため<b>条件付き必須</b>。</li><li><b>システイン</b>：非必須だが、必須のメチオニンから合成されるため不足し得る。<b>チロシン</b>はフェニルアラニンから合成（Pheが不足するとTyrも不足）。</li><li>必須アミノ酸が欠乏すると、深刻な代謝異常や成長障害が起こる。</li></ul><div class="box trap"><div class="bt">ひっかけ</div><p>チロシンの材料は<b>フェニルアラニン</b>（トリプトファンではない）。ヒスチジンはヒトで合成経路をもたない。</p></div></div><div class="ex"><div class="et">例題 2-1</div><p>必須アミノ酸でないものはどれか。<br>A ヒスチジン　B リシン　C アスパラギン　D トレオニン　E メチオニン</p><details><summary>答えを見る</summary><p><b>C</b>。</p></details></div></section>
+<section class="ch" id="c3"><h2><span class="cn">3</span><span class="tt">非必須アミノ酸の合成</span></h2><div class="card"><h3>合成法の3パターン</h3><div class="tbl"><table class=""><thead><tr><th>グループ</th><th>作り方</th><th>材料・仕組み</th><th>主なアミノ酸</th></tr></thead><tbody><tr><th>A 基本路線</th><td>エネルギー代謝の中間体（解糖系・TCA回路）を材料にする</td><td>アミノ基転移など1〜3段階</td><td>グルタミン酸、アスパラギン酸、セリン など</td></tr><tr><th>B 変換路線</th><td>必須アミノ酸から作る</td><td>食事から得た必須アミノ酸を別の非必須アミノ酸に変える</td><td>システイン、チロシン</td></tr><tr><th>C 後付け修飾</th><td>特殊な仕組みで作る</td><td>タンパク質に組み込まれた後に特殊な部位を変換し、特殊な機能を付与</td><td>ヒドロキシプロリン、セレノシステイン</td></tr></tbody></table></div><figure class="fig"><svg viewBox="0 0 390 198" role="img" aria-label="非必須アミノ酸の炭素骨格の由来" style="max-width:390px"><rect x="10" y="10" width="150" height="34" rx="7" class="f-box"/><text x="85" y="32" class="f-hx2" text-anchor="middle">オキサロ酢酸</text><line x1="162" y1="27" x2="196" y2="27" class="f-mu" marker-end="url(#fa)"/><rect x="198" y="10" width="180" height="34" rx="7" class="f-boxa"/><text x="288" y="32" class="f-hx" text-anchor="middle">Asp・Asn</text><rect x="10" y="58" width="150" height="34" rx="7" class="f-box"/><text x="85" y="80" class="f-hx2" text-anchor="middle">2-オキソグルタル酸</text><line x1="162" y1="75" x2="196" y2="75" class="f-mu" marker-end="url(#fa)"/><rect x="198" y="58" width="180" height="34" rx="7" class="f-boxa"/><text x="288" y="80" class="f-hx" text-anchor="middle">Glu・Gln・Pro・Arg</text><rect x="10" y="106" width="150" height="34" rx="7" class="f-box"/><text x="85" y="128" class="f-hx2" text-anchor="middle">ピルビン酸</text><line x1="162" y1="123" x2="196" y2="123" class="f-mu" marker-end="url(#fa)"/><rect x="198" y="106" width="180" height="34" rx="7" class="f-boxa"/><text x="288" y="128" class="f-hx" text-anchor="middle">Ala</text><rect x="10" y="154" width="150" height="34" rx="7" class="f-box"/><text x="85" y="176" class="f-hx2" text-anchor="middle">3-ホスホグリセリン酸</text><line x1="162" y1="171" x2="196" y2="171" class="f-mu" marker-end="url(#fa)"/><rect x="198" y="154" width="180" height="34" rx="7" class="f-boxa"/><text x="288" y="176" class="f-hx" text-anchor="middle">Ser→Gly・Cys</text></svg><figcaption>非必須アミノ酸は、代謝中間体からアミノ基転移などの1〜3段階で合成できる。</figcaption></figure><ul class="pts"><li><b>グルタミン酸</b>：2-オキソグルタル酸＋NH₄⁺＋NAD(P)H（<b>GDH</b>、ミトコンドリア）。アンモニウムイオン濃度を下げる重要な反応（シッフ塩基を経る2段階）。リソソームではない。</li><li><b>グルタミン</b>：Glu＋NH₃＋ATP（グルタミン合成酵素）。</li><li><b>アスパラギン酸</b>：OAA＋Glu（アスパラギン酸アミノトランスフェラーゼ、AST）。</li><li><b>アラニン</b>：ピルビン酸＋Glu/Asp（ALT、補酵素PLP）。<b>アミノ基転移反応</b>で、<b>ATP不要・可逆・無毒</b>（アンモニウムイオンが発生しないため）。アミノ基供与体はグルタミン酸・アスパラギン酸。</li><li><b>アスパラギン</b>：Asp＋Gln＋ATP → Asn＋Glu＋AMP＋PPi。</li><li><b>セリン</b>：3-ホスホグリセリン酸 →（<b>3-PGDH</b>、酸化）→ 3-ホスホヒドロキシピルビン酸 →（<b>アミノ基転移</b>）→ 3-ホスホセリン →（<b>ホスホセリンホスファターゼ</b>、脱リン酸化）→ セリン。3-PGDHが<b>律速</b>で、セリンによるフィードバック阻害を受ける。</li><li><b>セリン⇄グリシン</b>：SHMT、<b>THF</b>が関与し、N5,N10-メチレンTHFが生じる。THFは葉酸由来の1炭素単位の担体。</li><li><b>システイン</b>：セリン＋ホモシステイン →（シスタチオニンβ-シンターゼ）→ シスタチオニン →（シスタチオニンγ-リアーゼ）→ システイン＋ホモセリン。<b>硫黄の供給源はホモシステイン（メチオニン由来）</b>。</li><li><b>チロシン</b>：Phe→Tyr（フェニルアラニンヒドロキシラーゼ、<b>BH₄</b>必要、不可逆）。</li></ul></div><div class="ex"><div class="et">例題 3-1</div><p>フェニルアラニンからチロシンへの反応に必要な補因子はどれか。<br>A PLP　B BH₄　C TPP　D ビオチン　E FAD</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c4"><h2><span class="cn">4</span><span class="tt">コラーゲンと壊血病</span></h2><div class="card"><ul class="pts"><li>コラーゲンは<b>Gly-Xaa-Yaa</b>の繰り返し。Yaaの約20％が<b>ヒドロキシプロリン</b>。</li><li>ヒドロキシプロリン・ヒドロキシリシンは、タンパク質合成<b>後の修飾</b>で生じる（<b>ビタミンC</b>が必要）。</li></ul><p class="fm">VC不足 → Pro・Lysの水酸化不全 → 三重らせん不安定 → 毛細血管脆弱 → 皮下出血（壊血病）</p></div><div class="ex"><div class="et">例題 4-1</div><p>壊血病で障害される反応はどれか。<br>A Pro・Lysの水酸化　B Tyrの水酸化　C Gluの脱炭酸　D Alaのアミノ基転移　E Serの合成</p><details><summary>答えを見る</summary><p><b>A</b>。</p></details></div></section>
+<section class="ch" id="c5"><h2><span class="cn">5</span><span class="tt">タンパク質の分解</span></h2><div class="card"><ul class="pts"><li>代謝回転：体内タンパク質の約<b>1〜2％</b>/日。半減期は様々（短い：オルニチンデカルボキシラーゼ、長い：クリスタリン・コラーゲン）。</li><li><b>N末端則</b>：N末端アミノ酸が半減期を決める。<b>PEST配列</b>（Pro, Glu, Ser, Thr）は分解シグナル。</li></ul><div class="tbl"><table class=""><thead><tr><th></th><th>リソソーム系</th><th>ユビキチン・プロテアソーム系</th></tr></thead><tbody><tr><th>ATP</th><td>非依存</td><td><b>依存</b></td></tr><tr><th>対象</th><td>細胞外・膜タンパク質、長寿命タンパク質、オートファジー</td><td><b>半減期の短い調節タンパク質</b>、折りたたみ異常タンパク質</td></tr></tbody></table></div><figure class="fig"><svg viewBox="0 0 350 184" role="img" aria-label="ユビキチン・プロテアソーム系" style="max-width:350px"><rect x="10" y="10" width="330" height="32" rx="7" class="f-boxa"/><text x="175" y="31" class="f-hx2" text-anchor="middle">標的タンパク質</text><line x1="175" y1="42" x2="175" y2="54" class="f-mu" marker-end="url(#fa)"/><rect x="10" y="54" width="330" height="32" rx="7" class="f-box"/><text x="175" y="75" class="f-hx2" text-anchor="middle">E1（活性化）→ E2（結合）→ E3（リガーゼ）</text><line x1="175" y1="86" x2="175" y2="98" class="f-mu" marker-end="url(#fa)"/><rect x="10" y="98" width="330" height="32" rx="7" class="f-box"/><text x="175" y="119" class="f-hx2" text-anchor="middle">Lys48で4個以上のポリユビキチン鎖</text><line x1="175" y1="130" x2="175" y2="142" class="f-mu" marker-end="url(#fa)"/><rect x="10" y="142" width="330" height="32" rx="7" class="f-boxa"/><text x="175" y="163" class="f-hx2" text-anchor="middle">26Sプロテアソーム（ATP依存）で分解</text></svg><figcaption>ユビキチンは76アミノ酸の小タンパク質。</figcaption></figure><ul class="pts"><li>ユビキチン化：<b>E1・E2・E3</b>の3酵素。<b>Lys48</b>で4個以上連なる鎖が分解シグナル。</li><li>26Sプロテアソーム＝20S触媒コア（α-β-β-α、βが活性部位）＋両端の19S制御ユニット。19SはATP加水分解・基質の認識と脱ユビキチン化・アンフォールドを担い、<b>切断そのものは20Sが行う</b>。</li><li><b>ボルテゾミブ</b>（プロテアソーム阻害薬）：多発性骨髄腫。</li><li><b>オートファジー</b>：隔離膜形成 → オートファゴソーム → リソソームと融合 → 分解・再利用。</li><li>アシアロ糖タンパク質は肝細胞の受容体に取り込まれてリソソームで分解。</li></ul></div><div class="ex"><div class="et">例題 5-1</div><p>ユビキチン・プロテアソーム系で正しいのはどれか。<br>A ATP非依存　B リソソーム内で働く　C Lys48連結の4個以上のポリユビキチン鎖が標的化シグナル　D 19Sが切断を行う　E ユビキチンは700アミノ酸</p><details><summary>答えを見る</summary><p><b>C</b>。</p></details></div></section>
+<section class="ch" id="c6"><h2><span class="cn">6</span><span class="tt">頻出ポイントまとめ</span></h2><div class="card"><div class="tbl"><table class="ox"><thead><tr><th>文</th><th>正誤</th></tr></thead><tbody><tr><td>クワシオルコルはタンパク質欠乏が主体で浮腫を伴う</td><td class="o">○</td></tr><tr><td>マラスムスでは皮下脂肪が保たれる</td><td class="x">×</td></tr><tr><td>必須アミノ酸は9種である</td><td class="o">○</td></tr><tr><td>チロシンの材料はトリプトファンである</td><td class="x">×</td></tr><tr><td>アルギニンは成長期に条件付き必須となる</td><td class="o">○</td></tr><tr><td>GDHはアンモニウムイオンを減らす方向で重要</td><td class="o">○</td></tr><tr><td>Phe→Tyrの反応にBH₄が必要である</td><td class="o">○</td></tr><tr><td>ヒドロキシプロリンの生成にはビタミンCが必要である</td><td class="o">○</td></tr><tr><td>ユビキチン・プロテアソーム系はATP依存性である</td><td class="o">○</td></tr><tr><td>リソソーム系はATP依存性で、短寿命の調節タンパク質が主な標的である</td><td class="x">×</td></tr><tr><td>19S制御ユニットがペプチド結合を切断する</td><td class="x">×</td></tr><tr><td>ボルテゾミブは多発性骨髄腫に用いられる</td><td class="o">○</td></tr></tbody></table></div><a class="go" href="index.html#s7">アミノ酸の栄養・タンパク質分解の短答問題を解く ›</a></div></section>
+<a class="back" href="#top">目次へ戻る</a><footer>アミノ酸の栄養・分解テキスト</footer></div>
+</body></html>

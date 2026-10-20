@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>アンモニア処理と尿素回路テキスト</title>
+<style>
+:root{
+  --bg:#F2F2F7; --card:#FFFFFF; --fg:#1C1C1E; --fg2s:#6C6C70;
+  --sep:#C6C6C8; --fill:#E9E9EE; --accent:#0A66D9; --accentFill:#007AFF;
+  --accentSoft:#E5F0FF; --ok:#248A3D; --okSoft:#E3F5E7; --ng:#D70015; --ngSoft:#FDE7E9;
+  --warn:#C93400; --warnSoft:#FFF0E3; --nav:rgba(242,242,247,.86);
+  --font:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --card:#1C1C1E; --fg:#F2F2F7; --fg2s:#98989F;
+  --sep:#38383A; --fill:#2C2C2E; --accent:#4DA3FF; --accentFill:#0A84FF;
+  --accentSoft:#0B2540; --ok:#30D158; --okSoft:#12331B; --ng:#FF6961; --ngSoft:#3A1517;
+  --warn:#FF9F0A; --warnSoft:#3A2608; --nav:rgba(18,18,20,.86); color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--navh,49px) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-decoration:none}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
+.nav-in{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:760px;margin:0 auto;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;font-size:14px;font-weight:500;padding:6px 12px;border-radius:980px;color:var(--accent);white-space:nowrap}
+.nav a:hover,.nav a:focus-visible{background:var(--accentSoft);outline:none}
+.wrap{max-width:760px;margin:0 auto;padding-block:8px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding:32px 4px 8px}
+header.top .eyebrow{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.04em}
+h1{font-size:34px;line-height:1.2;font-weight:700;margin:4px 0 6px;letter-spacing:-.01em;text-wrap:balance}
+.byline{color:var(--fg2s);font-size:14px;margin:0}
+h2{font-size:22px;font-weight:700;margin:36px 4px 10px;text-wrap:balance}
+.group{background:var(--card);border-radius:12px;overflow:hidden}
+.group p{margin:0;padding:14px 16px;font-size:15px}
+.list a{display:flex;align-items:center;gap:12px;padding:12px 16px;color:var(--fg);border-top:.5px solid var(--sep)}
+.list a:first-child{border-top:0}
+.list a:hover{background:var(--fill)}
+.list .nm{flex:1;min-width:0;font-weight:500}
+.list .chev{color:var(--fg2s);font-size:18px}
+.list .no{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accentSoft);color:var(--accent);font-weight:700;font-size:13px;flex:none}
+.ch{scroll-margin-top:64px}
+.ch>h2{display:flex;align-items:flex-start;gap:10px;margin:48px 4px 12px}
+.ch>h2 .tt{flex:1;min-width:0;padding-top:1px}
+.cn{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--accentFill);color:#fff;font-size:17px;font-weight:700;flex:none}
+.card{background:var(--card);border-radius:14px;padding:18px 16px;font-size:16px;line-height:1.75}
+.card>p{margin:0 0 12px}
+.card h3{font-size:18px;margin:28px 0 10px;text-wrap:balance}
+.card h3:first-child{margin-top:0}
+.defs{margin:0}.defs dt{font-weight:700;color:var(--accent);margin-top:12px}.defs dd{margin:2px 0 0}
+.pts{padding-left:1.2em;margin:0 0 12px}.pts li{margin:7px 0}
+.tbl{overflow-x:auto;margin:12px 0 16px;border:.5px solid var(--sep);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:.5px solid var(--sep);text-align:left;vertical-align:top}
+.tbl tr:last-child>*{border-bottom:0}
+.tbl thead th{background:var(--fill);font-size:13px;color:var(--fg2s);white-space:nowrap}
+.tbl tbody th{color:var(--accent);min-width:3.5em}
+.tbl table.wide{min-width:620px}
+.tbl td.num{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ox td.o,.ox td.x{text-align:center;font-weight:700;white-space:nowrap}.ox td.o{color:var(--ok)}.ox td.x{color:var(--ng)}
+.box{border-radius:12px;padding:12px 14px;margin:14px 0;font-size:15px;line-height:1.7}
+.box p{margin:4px 0}.bt{font-weight:700;font-size:14px;margin-bottom:2px}
+.box.mem{background:var(--accentSoft)}.mem .bt{color:var(--accent)}
+.box.trap{background:var(--fill)}
+.box.cl{background:var(--warnSoft)}.cl .bt{color:var(--warn)}
+.fm{font-weight:700;text-align:center;margin:10px 0!important;font-size:17px}
+.ex{background:var(--card);border-radius:14px;padding:14px 16px;margin-top:12px;border:1px dashed var(--accent)}
+.et{font-weight:700;color:var(--accent);margin-bottom:6px}
+.ex p{margin:0 0 6px;font-size:15px;line-height:1.7}
+.ex details summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:15px}
+.ex details p{margin-top:8px;padding:10px 12px;background:var(--fill);border-radius:8px}
+.go{display:block;text-align:center;margin-top:16px;padding:12px;border-radius:12px;background:var(--accentSoft);font-weight:600}
+.back{display:block;text-align:center;margin:18px 0 0;font-size:15px}
+footer{color:var(--fg2s);font-size:13px;text-align:center;margin-top:40px}
+.fig{margin:14px 0;padding:0;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;margin:0 auto;font-family:var(--font)}
+.fig figcaption{font-size:13px;color:var(--fg2s);margin-top:6px;line-height:1.55}
+.f-tx{fill:var(--fg);font-size:12px}.f-sm{fill:var(--fg2s);font-size:11px}
+.f-hx{fill:var(--accent);font-size:13px;font-weight:700}.f-hx2{fill:var(--fg);font-size:12px;font-weight:700}
+.f-wx{fill:var(--warn);font-size:12px;font-weight:600}.f-ngx{fill:var(--ng);font-size:12px;font-weight:600}
+.f-mu{stroke:var(--fg2s);stroke-width:1.2;fill:none}.f-bd{stroke:var(--fg);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.f-dash{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:4 3;fill:none}
+.f-curve{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linejoin:round}
+.f-box{fill:var(--fill);stroke:var(--sep)}.f-boxa{fill:var(--accentSoft);stroke:var(--accent)}
+.f-shade{fill:var(--accent);opacity:.12}.f-dot{fill:var(--accent)}.f-pt{fill:var(--ng)}
+.f-arr{fill:var(--fg2s)}
+@media (max-width:420px){h1{font-size:28px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-arr"/></marker></defs></svg>
+<nav class="nav" aria-label="目次"><div class="nav-in"><a href="#top">目次</a><a href="#c1">アミノ基の運搬</a><a href="#c2">食後・空腹時</a><a href="#c3">尿素回路</a><a href="#c4">異常症</a><a href="#c5">頻出まとめ</a><a href="index.html">問題集へ</a></div></nav>
+<div class="wrap" id="top"><header class="top"><div class="eyebrow">横浜市立大学 医学部 生化学試験対策</div><h1>アンモニア処理と尿素回路テキスト</h1><p class="byline">文責：矢作颯真</p></header>
+<div class="group"><p>アミノ基の運搬、窒素排泄、尿素回路と尿素回路異常症を整理したテキストです。問題演習は<a href="index.html#s8">短答問題集</a>で。</p></div>
+<h2>目次</h2><div class="group list"><a href="#c1"><span class="no">1</span><span class="nm">アミノ基転移とアンモニアの運搬</span><span class="chev">›</span></a><a href="#c2"><span class="no">2</span><span class="nm">食後・空腹時のアミノ酸の動き</span><span class="chev">›</span></a><a href="#c3"><span class="no">3</span><span class="nm">尿素回路</span><span class="chev">›</span></a><a href="#c4"><span class="no">4</span><span class="nm">尿素回路異常症</span><span class="chev">›</span></a><a href="#c5"><span class="no">5</span><span class="nm">頻出ポイントまとめ</span><span class="chev">›</span></a></div>
+<section class="ch" id="c1"><h2><span class="cn">1</span><span class="tt">アミノ基転移とアンモニアの運搬</span></h2><div class="card"><ul class="pts"><li>アミノ基の行き先は<b>アンモニア → 尿素</b>（炭素骨格ではない）。</li><li><b>アミノ基転移反応</b>：アミノ酸＋2-オキソグルタル酸 ⇄ α-ケト酸＋<b>グルタミン酸</b>。補酵素は<b>PLP（ビタミンB₆）</b>。反応はピンポン機構、中間体は<b>シッフ塩基</b>。ALT・ASTがこの反応を触媒。</li><li>グルタミン酸は肝<b>ミトコンドリア</b>で<b>GDH</b>により<b>酸化的脱アミノ</b>され、NH₄⁺を遊離（NAD⁺・NADP⁺どちらも使用可）。GDHはATP・GTPで活性低下、ADP・GDPで上昇。</li><li>末梢では<b>グルタミン合成酵素</b>がGlu＋NH₃＋ATP→Glnとして無毒化。<b>グルタミナーゼ</b>がGlnからNH₄⁺を遊離（肝臓→尿素回路、腎臓→尿中排泄）。</li><li>血中の無毒な運搬形：<b>アラニン</b>（筋→肝）と<b>グルタミン</b>（腸・腎へ）。</li></ul><div class="tbl"><table class=""><thead><tr><th></th><th>アラニン</th><th>グルタミン</th></tr></thead><tbody><tr><th>由来</th><td>筋肉</td><td>筋肉・脳など</td></tr><tr><th>行き先</th><td>主に<b>肝臓</b>（グルコース-アラニン回路：尿素回路・糖新生）</td><td>腸・腎臓</td></tr></tbody></table></div><div class="box cl"><div class="bt">臨床</div><p>代謝性アシドーシスでは腎のグルタミナーゼが上昇し、NH₄⁺を尿中に排泄してpHを調節する。</p></div></div><div class="ex"><div class="et">例題 1-1</div><p>筋肉から肝臓へアンモニア（窒素）を運ぶアミノ酸はどれか。<br>A アラニン　B チロシン　C システイン　D プロリン　E トリプトファン</p><details><summary>答えを見る</summary><p><b>A</b>。</p></details></div></section>
+<section class="ch" id="c2"><h2><span class="cn">2</span><span class="tt">食後・空腹時のアミノ酸の動き</span></h2><div class="card"><h3>空腹時</h3><ul class="pts"><li>筋肉のタンパク質が分解され、<b>分岐鎖アミノ酸（Val, Leu, Ile）</b>がエネルギーとして使われる。</li><li>生じた窒素は<b>アラニン・グルタミン</b>として運ばれ、最終的に肝臓で<b>尿素</b>になる。</li><li><b>グルコース-アラニン回路</b>：筋でアミノ基をピルビン酸に結合してアラニンとして血中へ → 肝臓でアラニンからアミノ基を外し、アミノ基は尿素回路へ、ピルビン酸は<b>糖新生</b>へ → 生じたグルコースを再び筋肉へ。</li></ul><h3>満腹時</h3><ul class="pts"><li>腸から吸収したアミノ酸は肝臓へ。<b>分岐鎖アミノ酸は肝臓を素通り</b>して筋肉に運ばれる。</li></ul><ul class="pts"><li>食後：吸収されたアミノ酸は<b>門脈</b>を通ってまず肝臓へ。</li><li><b>分岐鎖アミノ酸</b>（Val, Leu, Ile）は肝臓に代謝する酵素が乏しく、<b>素通りして筋肉</b>へ（吸収直後約20％→肝通過後約60％）。</li><li>空腹時は<b>筋肉</b>が血中遊離アミノ酸の半分以上を供給する。筋肉のアミノ酸は脳や肝臓（糖新生）に運ばれる。</li><li>窒素排泄形：<b>アンモニア</b>（硬骨魚類、エラから希釈）、<b>尿酸</b>（鳥類・爬虫類、固体で水分損失が少ない）、<b>尿素</b>（陸生哺乳類）。</li></ul></div><div class="ex"><div class="et">例題 2-1</div><p>食後に肝臓を素通りして筋肉に運ばれるアミノ酸はどれか。<br>A 芳香族アミノ酸　B 分岐鎖アミノ酸　C 酸性アミノ酸　D 含硫アミノ酸　E 塩基性アミノ酸</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c3"><h2><span class="cn">3</span><span class="tt">尿素回路</span></h2><div class="card"><p>猛毒のアンモニアを、水溶性の無毒な尿素にして排泄する。<b>肝細胞</b>で、反応①②はミトコンドリア、③④⑤は細胞質。</p><figure class="fig"><svg viewBox="0 0 400 284" role="img" aria-label="尿素回路" style="max-width:400px"><rect x="10" y="8" width="380" height="126" rx="7" class="f-shade"/><text x="20" y="26" class="f-hx">ミトコンドリア</text><rect x="10" y="148" width="380" height="128" rx="7" class="f-shade"/><text x="20" y="166" class="f-hx">細胞質</text><rect x="20" y="36" width="120" height="30" rx="7" class="f-box"/><text x="80" y="56" class="f-hx2" text-anchor="middle">NH₄⁺＋CO₂</text><line x1="140" y1="51" x2="196" y2="51" class="f-mu" marker-end="url(#fa)"/><text x="168" y="44" class="f-wx" text-anchor="middle">CPS I</text><text x="168" y="66" class="f-sm" text-anchor="middle">（−2ATP）</text><rect x="198" y="36" width="170" height="30" rx="7" class="f-box"/><text x="283" y="56" class="f-hx2" text-anchor="middle">カルバモイルリン酸</text><line x1="283" y1="66" x2="283" y2="92" class="f-mu" marker-end="url(#fa)"/><text x="292" y="84" class="f-wx">OTC（＋オルニチン）</text><rect x="198" y="94" width="170" height="30" rx="7" class="f-box"/><text x="283" y="114" class="f-hx2" text-anchor="middle">シトルリン</text><line x1="283" y1="124" x2="283" y2="176" class="f-mu" marker-end="url(#fa)"/><rect x="198" y="178" width="170" height="30" rx="7" class="f-box"/><text x="283" y="198" class="f-hx2" text-anchor="middle">アルギニノコハク酸</text><text x="292" y="160" class="f-wx">ASS（＋Asp）</text><line x1="198" y1="193" x2="150" y2="193" class="f-mu" marker-end="url(#fa)"/><text x="174" y="184" class="f-wx" text-anchor="middle">ASL</text><rect x="30" y="178" width="118" height="30" rx="7" class="f-boxa"/><text x="89" y="198" class="f-hx2" text-anchor="middle">アルギニン</text><text x="160" y="215" class="f-sm">＋フマル酸 → TCA回路</text><line x1="89" y1="208" x2="89" y2="236" class="f-mu" marker-end="url(#fa)"/><text x="100" y="230" class="f-wx">アルギナーゼ</text><rect x="30" y="238" width="118" height="30" rx="7" class="f-box"/><text x="89" y="258" class="f-hx2" text-anchor="middle">尿素＋オルニチン</text></svg><figcaption>反応①②はミトコンドリア、③④⑤は細胞質。尿素1分子の合成に4高エネルギーリン酸結合（ATP 3分子）を消費。尿素の窒素の一つはNH₄⁺由来、もう一つはアスパラギン酸由来。</figcaption></figure><div class="tbl"><table class=""><thead><tr><th>番号</th><th>酵素</th><th>基質→産物</th></tr></thead><tbody><tr><th>①</th><td><b>CPS I</b>（律速）</td><td>NH₄⁺＋CO₂→カルバモイルリン酸</td></tr><tr><th>②</th><td>OTC</td><td>＋オルニチン→シトルリン</td></tr><tr><th>③</th><td>アルギニノコハク酸シンターゼ</td><td>＋Asp→アルギニノコハク酸</td></tr><tr><th>④</th><td>アルギニノコハク酸リアーゼ</td><td>→アルギニン＋フマル酸</td></tr><tr><th>⑤</th><td>アルギナーゼ</td><td>→尿素＋オルニチン</td></tr></tbody></table></div><ul class="pts"><li>CPS Iは<b>N-アセチルグルタミン酸（NAG）</b>で活性化（NAGS欠損でも高アンモニア血症）。</li><li>尿素1分子で<b>ATP 3分子</b>（④でAMPになるため高エネルギーリン酸結合は4）。</li><li>フマル酸は<b>TCA回路</b>へ。</li><li><b>CPS I</b>（ミトコンドリア、尿素回路）と<b>CPS II</b>（細胞質、ピリミジン合成）を区別。</li></ul></div><div class="ex"><div class="et">例題 3-1</div><p>尿素回路の律速酵素はどれか。<br>A OTC　B アルギナーゼ　C CPS I　D アルギニノコハク酸リアーゼ　E グルタミナーゼ</p><details><summary>答えを見る</summary><p><b>C</b>。</p></details></div></section>
+<section class="ch" id="c4"><h2><span class="cn">4</span><span class="tt">尿素回路異常症</span></h2><div class="card"><div class="tbl"><table class=""><thead><tr><th>欠損</th><th>疾患・特徴</th></tr></thead><tbody><tr><th>CPS I</th><td>高アンモニア血症I型（最重症）</td></tr><tr><th>OTC</th><td>高アンモニア血症II型。<b>X連鎖</b>、最も頻度が高い</td></tr><tr><th>アルギニノコハク酸シンターゼ</th><td><b>シトルリン血症</b></td></tr><tr><th>アルギニノコハク酸リアーゼ</th><td>アルギニノコハク酸尿症（<b>結節性裂毛症</b>）</td></tr><tr><th>アルギナーゼ</th><td>高アルギニン血症（2〜4歳頃まで症状が目立たない）</td></tr><tr><th>オルニチン輸送体</th><td>HHH症候群（高オルニチン・高アンモニア・ホモシトルリン尿症）</td></tr><tr><th>NAGS</th><td>高アンモニア血症（CPS Iが活性化されない）</td></tr></tbody></table></div><ul class="pts"><li>回路の<b>上流（①②）ほど重症</b>。</li><li>共通症状：高アンモニア血症による哺乳不良・嘔吐・嗜眠・けいれん・意識障害。高血糖・肥満は特徴ではない。</li></ul><div class="box cl"><div class="bt">臨床</div><p>生後数日の新生児、哺乳不良・嘔吐・嗜眠・けいれん、血中アンモニア著明高値 → 最重症は<b>CPS I</b>障害。</p></div></div><div class="ex"><div class="et">例題 4-1</div><p>毛髪がもろくなる（結節性裂毛症）のはどれか。<br>A OTC欠損　B シトルリン血症　C アルギニノコハク酸尿症　D 高アルギニン血症　E HHH症候群</p><details><summary>答えを見る</summary><p><b>C</b>。</p></details></div></section>
+<section class="ch" id="c5"><h2><span class="cn">5</span><span class="tt">頻出ポイントまとめ</span></h2><div class="card"><div class="tbl"><table class="ox"><thead><tr><th>文</th><th>正誤</th></tr></thead><tbody><tr><td>アミノ基は尿素として排泄される</td><td class="o">○</td></tr><tr><td>アミノ基転移反応の補酵素はPLPである</td><td class="o">○</td></tr><tr><td>GDHによる酸化的脱アミノは肝ミトコンドリアで起こる</td><td class="o">○</td></tr><tr><td>筋肉から肝臓へ窒素を運ぶのはアラニンである</td><td class="o">○</td></tr><tr><td>分岐鎖アミノ酸は食後に肝臓で主に代謝される</td><td class="x">×</td></tr><tr><td>尿素回路はすべて細胞質で起こる</td><td class="x">×</td></tr><tr><td>CPS Iの活性化にN-アセチルグルタミン酸が必要である</td><td class="o">○</td></tr><tr><td>尿素1分子の合成で消費されるATPは3分子である</td><td class="o">○</td></tr><tr><td>尿素回路で生じるフマル酸はTCA回路に入る</td><td class="o">○</td></tr><tr><td>OTC欠損はX連鎖で高アンモニア血症を呈する</td><td class="o">○</td></tr><tr><td>アルギニノコハク酸尿症では結節性裂毛症がみられる</td><td class="o">○</td></tr><tr><td>尿素回路の下流の異常ほど重症である</td><td class="x">×</td></tr></tbody></table></div><a class="go" href="index.html#s8">アンモニア処理と尿素回路の短答問題を解く ›</a></div></section>
+<a class="back" href="#top">目次へ戻る</a><footer>アンモニア処理と尿素回路テキスト</footer></div>
+</body></html>

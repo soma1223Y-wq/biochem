@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>アミノ酸の炭素骨格と特殊生成物テキスト</title>
+<style>
+:root{
+  --bg:#F2F2F7; --card:#FFFFFF; --fg:#1C1C1E; --fg2s:#6C6C70;
+  --sep:#C6C6C8; --fill:#E9E9EE; --accent:#0A66D9; --accentFill:#007AFF;
+  --accentSoft:#E5F0FF; --ok:#248A3D; --okSoft:#E3F5E7; --ng:#D70015; --ngSoft:#FDE7E9;
+  --warn:#C93400; --warnSoft:#FFF0E3; --nav:rgba(242,242,247,.86);
+  --font:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --card:#1C1C1E; --fg:#F2F2F7; --fg2s:#98989F;
+  --sep:#38383A; --fill:#2C2C2E; --accent:#4DA3FF; --accentFill:#0A84FF;
+  --accentSoft:#0B2540; --ok:#30D158; --okSoft:#12331B; --ng:#FF6961; --ngSoft:#3A1517;
+  --warn:#FF9F0A; --warnSoft:#3A2608; --nav:rgba(18,18,20,.86); color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--navh,49px) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-decoration:none}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
+.nav-in{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:760px;margin:0 auto;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;font-size:14px;font-weight:500;padding:6px 12px;border-radius:980px;color:var(--accent);white-space:nowrap}
+.nav a:hover,.nav a:focus-visible{background:var(--accentSoft);outline:none}
+.wrap{max-width:760px;margin:0 auto;padding-block:8px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding:32px 4px 8px}
+header.top .eyebrow{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.04em}
+h1{font-size:34px;line-height:1.2;font-weight:700;margin:4px 0 6px;letter-spacing:-.01em;text-wrap:balance}
+.byline{color:var(--fg2s);font-size:14px;margin:0}
+h2{font-size:22px;font-weight:700;margin:36px 4px 10px;text-wrap:balance}
+.group{background:var(--card);border-radius:12px;overflow:hidden}
+.group p{margin:0;padding:14px 16px;font-size:15px}
+.list a{display:flex;align-items:center;gap:12px;padding:12px 16px;color:var(--fg);border-top:.5px solid var(--sep)}
+.list a:first-child{border-top:0}
+.list a:hover{background:var(--fill)}
+.list .nm{flex:1;min-width:0;font-weight:500}
+.list .chev{color:var(--fg2s);font-size:18px}
+.list .no{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accentSoft);color:var(--accent);font-weight:700;font-size:13px;flex:none}
+.ch{scroll-margin-top:64px}
+.ch>h2{display:flex;align-items:flex-start;gap:10px;margin:48px 4px 12px}
+.ch>h2 .tt{flex:1;min-width:0;padding-top:1px}
+.cn{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--accentFill);color:#fff;font-size:17px;font-weight:700;flex:none}
+.card{background:var(--card);border-radius:14px;padding:18px 16px;font-size:16px;line-height:1.75}
+.card>p{margin:0 0 12px}
+.card h3{font-size:18px;margin:28px 0 10px;text-wrap:balance}
+.card h3:first-child{margin-top:0}
+.defs{margin:0}.defs dt{font-weight:700;color:var(--accent);margin-top:12px}.defs dd{margin:2px 0 0}
+.pts{padding-left:1.2em;margin:0 0 12px}.pts li{margin:7px 0}
+.tbl{overflow-x:auto;margin:12px 0 16px;border:.5px solid var(--sep);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:.5px solid var(--sep);text-align:left;vertical-align:top}
+.tbl tr:last-child>*{border-bottom:0}
+.tbl thead th{background:var(--fill);font-size:13px;color:var(--fg2s);white-space:nowrap}
+.tbl tbody th{color:var(--accent);min-width:3.5em}
+.tbl table.wide{min-width:620px}
+.tbl td.num{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ox td.o,.ox td.x{text-align:center;font-weight:700;white-space:nowrap}.ox td.o{color:var(--ok)}.ox td.x{color:var(--ng)}
+.box{border-radius:12px;padding:12px 14px;margin:14px 0;font-size:15px;line-height:1.7}
+.box p{margin:4px 0}.bt{font-weight:700;font-size:14px;margin-bottom:2px}
+.box.mem{background:var(--accentSoft)}.mem .bt{color:var(--accent)}
+.box.trap{background:var(--fill)}
+.box.cl{background:var(--warnSoft)}.cl .bt{color:var(--warn)}
+.fm{font-weight:700;text-align:center;margin:10px 0!important;font-size:17px}
+.ex{background:var(--card);border-radius:14px;padding:14px 16px;margin-top:12px;border:1px dashed var(--accent)}
+.et{font-weight:700;color:var(--accent);margin-bottom:6px}
+.ex p{margin:0 0 6px;font-size:15px;line-height:1.7}
+.ex details summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:15px}
+.ex details p{margin-top:8px;padding:10px 12px;background:var(--fill);border-radius:8px}
+.go{display:block;text-align:center;margin-top:16px;padding:12px;border-radius:12px;background:var(--accentSoft);font-weight:600}
+.back{display:block;text-align:center;margin:18px 0 0;font-size:15px}
+footer{color:var(--fg2s);font-size:13px;text-align:center;margin-top:40px}
+.fig{margin:14px 0;padding:0;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;margin:0 auto;font-family:var(--font)}
+.fig figcaption{font-size:13px;color:var(--fg2s);margin-top:6px;line-height:1.55}
+.f-tx{fill:var(--fg);font-size:12px}.f-sm{fill:var(--fg2s);font-size:11px}
+.f-hx{fill:var(--accent);font-size:13px;font-weight:700}.f-hx2{fill:var(--fg);font-size:12px;font-weight:700}
+.f-wx{fill:var(--warn);font-size:12px;font-weight:600}.f-ngx{fill:var(--ng);font-size:12px;font-weight:600}
+.f-mu{stroke:var(--fg2s);stroke-width:1.2;fill:none}.f-bd{stroke:var(--fg);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.f-dash{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:4 3;fill:none}
+.f-curve{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linejoin:round}
+.f-box{fill:var(--fill);stroke:var(--sep)}.f-boxa{fill:var(--accentSoft);stroke:var(--accent)}
+.f-shade{fill:var(--accent);opacity:.12}.f-dot{fill:var(--accent)}.f-pt{fill:var(--ng)}
+.f-arr{fill:var(--fg2s)}
+@media (max-width:420px){h1{font-size:28px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-arr"/></marker></defs></svg>
+<nav class="nav" aria-label="目次"><div class="nav-in"><a href="#top">目次</a><a href="#c1">炭素骨格</a><a href="#c2">先天性代謝異常</a><a href="#c3">特殊生成物</a><a href="#c4">頻出まとめ</a><a href="index.html">問題集へ</a></div></nav>
+<div class="wrap" id="top"><header class="top"><div class="eyebrow">横浜市立大学 医学部 生化学試験対策</div><h1>アミノ酸の炭素骨格と特殊生成物テキスト</h1><p class="byline">文責：矢作颯真</p></header>
+<div class="group"><p>炭素骨格の行き先、アミノ酸代謝の先天性代謝異常、特殊生成物（手書きノートの構成に沿って）を整理したテキストです。問題演習は<a href="index.html#s9">短答問題集</a>で。</p></div>
+<h2>目次</h2><div class="group list"><a href="#c1"><span class="no">1</span><span class="nm">アミノ酸の炭素骨格の行き先</span><span class="chev">›</span></a><a href="#c2"><span class="no">2</span><span class="nm">アミノ酸代謝の先天性代謝異常</span><span class="chev">›</span></a><a href="#c3"><span class="no">3</span><span class="nm">アミノ酸の特殊生成物への変換</span><span class="chev">›</span></a><a href="#c4"><span class="no">4</span><span class="nm">頻出ポイントまとめ</span><span class="chev">›</span></a></div>
+<section class="ch" id="c1"><h2><span class="cn">1</span><span class="tt">アミノ酸の炭素骨格の行き先</span></h2><div class="card"><p>アミノ基を除いた<b>炭素骨格</b>は、7つの代謝中間体に集約される。</p><figure class="fig"><svg viewBox="0 0 400 128" role="img" aria-label="炭素骨格の行き先" style="max-width:400px"><rect x="10" y="10" width="150" height="30" rx="7" class="f-box"/><text x="85" y="30" class="f-hx2" text-anchor="middle">アミノ酸の炭素骨格</text><line x1="85" y1="40" x2="85" y2="60" class="f-mu" marker-end="url(#fa)"/><line x1="85" y1="40" x2="300" y2="60" class="f-mu" marker-end="url(#fa)"/><rect x="4" y="62" width="196" height="56" rx="7" class="f-boxa"/><text x="102" y="82" class="f-hx" text-anchor="middle">糖原性アミノ酸</text><text x="102" y="100" class="f-sm" text-anchor="middle">Pyr・α-KG・スクシニルCoA</text><text x="102" y="112" class="f-sm" text-anchor="middle">フマル酸・OAA → グルコース</text><rect x="212" y="62" width="184" height="56" rx="7" class="f-box"/><text x="300" y="82" class="f-hx" text-anchor="middle">ケト原性アミノ酸</text><text x="300" y="100" class="f-sm" text-anchor="middle">アセチルCoA・アセト酢酸</text><text x="300" y="112" class="f-sm" text-anchor="middle">→ ケトン体・脂肪酸</text></svg><figcaption>ロイシンとリシンは純粋なケト原性アミノ酸（グルコースには変換できない）。</figcaption></figure><ul class="pts"><li><b>糖原性アミノ酸</b>：ピルビン酸、α-ケトグルタル酸、スクシニルCoA、フマル酸、オキサロ酢酸になる → クエン酸回路で酸化（ATP）あるいは<b>グルコース</b>合成。</li><li><b>ケト原性アミノ酸</b>：アセチルCoA、アセトアセチルCoAになる → <b>ケトン体や脂肪酸</b>の合成（グルコースには変換できない）。</li><li><b>ロイシン・リシン</b>は純粋なケト原性。</li><li>例：<b>アスパラギン</b> →（アスパラギナーゼ）→ アスパラギン酸 →（アミノ基転移）→ <b>オキサロ酢酸</b>。</li></ul><div class="box mem"><div class="bt">覚える</div><p>ノートの指示：「これを覚えましょう！」＝ 糖原性／ケト原性の振り分けと、7つの中間体への集約。</p></div></div><div class="ex"><div class="et">例題 1-1</div><p>純粋なケト原性アミノ酸の組合せはどれか。<br>A ロイシン・リシン　B アラニン・セリン　C アスパラギン・アスパラギン酸　D フェニルアラニン・チロシン　E バリン・イソロイシン</p><details><summary>答えを見る</summary><p><b>A</b>。</p></details></div></section>
+<section class="ch" id="c2"><h2><span class="cn">2</span><span class="tt">アミノ酸代謝の先天性代謝異常</span></h2><div class="card"><div class="tbl"><table class="wide"><thead><tr><th>疾患</th><th>欠損酵素</th><th>症状・ポイント</th></tr></thead><tbody><tr><th>高アルギニン血症</th><td><b>アルギナーゼ</b>（尿素回路）</td><td>尿素回路の一つとして重要。2〜4歳頃まで症状が目立たない</td></tr><tr><th><b>フェニルケトン尿症（PKU）</b></th><td><b>フェニルアラニンヒドロキシラーゼ</b></td><td><b>重度の精神遅滞</b>。Phe過剰 → フェニルピルビン酸・フェニル乳酸・フェニル酢酸が増加。治療は<b>フェニルアラニン制限食</b>。Tyrが本来作れず必須となる</td></tr><tr><th><b>メープルシロップ尿症（MSUD）</b></th><td><b>分枝α-ケト酸デヒドロゲナーゼ複合体</b></td><td><b>尿がメープルシロップ臭</b>、重度の神経障害。分岐鎖アミノ酸（Leu, Val, Ile）の共通の最初の3反応（アミノ基転移、脱炭酸、脱水素）。遺伝的多様性あり</td></tr><tr><th><b>アルカプトン尿症</b></th><td><b>ホモゲンチジン酸1,2-ジオキシゲナーゼ</b></td><td><b>黒色尿</b>、オクロノーシス（関節への色素沈着）。チロシン異化経路</td></tr><tr><th><b>ホモシスチン尿症</b></th><td><b>シスタチオニンβ-シンターゼ</b></td><td><b>骨格異常、精神遅滞、心血管疾患リスク上昇</b>。ホモシステインの蓄積が原因</td></tr></tbody></table></div><h3>先天性代謝異常を防ぐには</h3><ul class="pts"><li><b>早期発見</b>が最善。方法として<b>新生児マススクリーニング</b>（<b>タンデム質量分析法</b>）。</li><li>生後数日の新生児の血液（濾紙血）から、アミノ酸・アシルカルニチンを一度に測定できる。症状が出る前に診断し、食事療法などを始められる。</li></ul><div class="box trap"><div class="bt">ひっかけ</div><p>PKUは「フェニルアラニン→チロシン」の酵素欠損。メープルシロップ尿症は「<b>分岐鎖</b>α-ケト酸」の脱水素酵素欠損。ホモシスチン尿症は<b>シスタチオニン</b>β-シンターゼ。名称と酵素の組合せで出題される。</p></div></div><div class="ex"><div class="et">例題 2-1</div><p>尿が黒色になり、関節に色素沈着を来す先天性代謝異常症はどれか。<br>A PKU　B MSUD　C アルカプトン尿症　D ホモシスチン尿症　E 高アルギニン血症</p><details><summary>答えを見る</summary><p><b>C</b>。</p></details></div></section>
+<section class="ch" id="c3"><h2><span class="cn">3</span><span class="tt">アミノ酸の特殊生成物への変換</span></h2><div class="card"><p>アミノ酸はタンパク質の材料だけでなく、生命維持に必要な多様な分子の前駆体になる。</p><div class="tbl"><table class="wide"><thead><tr><th></th><th>前駆体 → 生成物</th><th>役割</th></tr></thead><tbody><tr><th>A エネルギー代謝・細胞機能</th><td><b>メチオニン → SAM</b></td><td>主要なメチル基の運び屋（ATPからアデノシル基を受ける）</td></tr><tr><th></th><td><b>Arg＋Gly＋Met(SAM) → クレアチン</b></td><td>筋肉のエネルギー貯蔵。クレアチニンは腎機能の指標</td></tr><tr><th></th><td><b>アルギニン → NO</b></td><td>NO合成酵素。血管平滑筋を弛緩させる</td></tr><tr><th>B 神経伝達物質・ホルモン</th><td><b>チロシン → カテコールアミン</b></td><td>ドーパミン・ノルアドレナリン・アドレナリン。甲状腺ホルモン</td></tr><tr><th></th><td><b>トリプトファン → セロトニン、メラトニン</b></td><td>セロトニン（気分の安定）、メラトニン（睡眠）</td></tr><tr><th></th><td><b>ヒスチジン → ヒスタミン</b></td><td>アレルギー・胃酸分泌・覚醒</td></tr><tr><th>C 非α-アミノ酸など</th><td><b>グルタミン酸 → GABA</b></td><td>脳の主要な抑制性神経伝達物質（ブレーキ）</td></tr><tr><th></th><td><b>β-アラニン</b></td><td>補酵素A（パントテン酸）の構成、カルノシン（筋肉の緩衝成分）</td></tr></tbody></table></div></div><div class="ex"><div class="et">例題 3-1</div><p>アルギニンから合成される血管拡張性のシグナル分子はどれか。<br>A ヒスタミン　B GABA　C NO　D セロトニン　E クレアチン</p><details><summary>答えを見る</summary><p><b>C</b>。</p></details></div></section>
+<section class="ch" id="c4"><h2><span class="cn">4</span><span class="tt">頻出ポイントまとめ</span></h2><div class="card"><div class="tbl"><table class="ox"><thead><tr><th>文</th><th>正誤</th></tr></thead><tbody><tr><td>ロイシンとリシンは純粋なケト原性アミノ酸である</td><td class="o">○</td></tr><tr><td>糖原性アミノ酸はアセチルCoAを経てグルコースに変換される</td><td class="x">×</td></tr><tr><td>PKUはフェニルアラニンヒドロキシラーゼの欠損で起こる</td><td class="o">○</td></tr><tr><td>メープルシロップ尿症は分岐鎖α-ケト酸DH複合体の欠損である</td><td class="o">○</td></tr><tr><td>アルカプトン尿症では黒色尿がみられる</td><td class="o">○</td></tr><tr><td>ホモシスチン尿症の原因酵素はシスタチオニンβ-シンターゼである</td><td class="o">○</td></tr><tr><td>新生児マススクリーニングにはタンデム質量分析法が用いられる</td><td class="o">○</td></tr><tr><td>SAMは主要なメチル基供与体である</td><td class="o">○</td></tr><tr><td>チロシンからカテコールアミンが作られる</td><td class="o">○</td></tr><tr><td>GABAは脳の主要な興奮性神経伝達物質である</td><td class="x">×</td></tr><tr><td>ヒスチジンからヒスタミンが作られる</td><td class="o">○</td></tr><tr><td>メラトニンはトリプトファンから作られる</td><td class="o">○</td></tr></tbody></table></div><a class="go" href="index.html#s9">炭素骨格と特殊生成物の短答問題を解く ›</a></div></section>
+<a class="back" href="#top">目次へ戻る</a><footer>アミノ酸の炭素骨格と特殊生成物テキスト</footer></div>
+</body></html>

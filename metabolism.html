@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>代謝の概要テキスト</title>
+<style>
+:root{
+  --bg:#F2F2F7; --card:#FFFFFF; --fg:#1C1C1E; --fg2s:#6C6C70;
+  --sep:#C6C6C8; --fill:#E9E9EE; --accent:#0A66D9; --accentFill:#007AFF;
+  --accentSoft:#E5F0FF; --ok:#248A3D; --okSoft:#E3F5E7; --ng:#D70015; --ngSoft:#FDE7E9;
+  --warn:#C93400; --warnSoft:#FFF0E3; --nav:rgba(242,242,247,.86);
+  --font:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --card:#1C1C1E; --fg:#F2F2F7; --fg2s:#98989F;
+  --sep:#38383A; --fill:#2C2C2E; --accent:#4DA3FF; --accentFill:#0A84FF;
+  --accentSoft:#0B2540; --ok:#30D158; --okSoft:#12331B; --ng:#FF6961; --ngSoft:#3A1517;
+  --warn:#FF9F0A; --warnSoft:#3A2608; --nav:rgba(18,18,20,.86); color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--navh,49px) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-decoration:none}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
+.nav-in{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:760px;margin:0 auto;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;font-size:14px;font-weight:500;padding:6px 12px;border-radius:980px;color:var(--accent);white-space:nowrap}
+.nav a:hover,.nav a:focus-visible{background:var(--accentSoft);outline:none}
+.wrap{max-width:760px;margin:0 auto;padding-block:8px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding:32px 4px 8px}
+header.top .eyebrow{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.04em}
+h1{font-size:34px;line-height:1.2;font-weight:700;margin:4px 0 6px;letter-spacing:-.01em;text-wrap:balance}
+.byline{color:var(--fg2s);font-size:14px;margin:0}
+h2{font-size:22px;font-weight:700;margin:36px 4px 10px;text-wrap:balance}
+.group{background:var(--card);border-radius:12px;overflow:hidden}
+.group p{margin:0;padding:14px 16px;font-size:15px}
+.list a{display:flex;align-items:center;gap:12px;padding:12px 16px;color:var(--fg);border-top:.5px solid var(--sep)}
+.list a:first-child{border-top:0}
+.list a:hover{background:var(--fill)}
+.list .nm{flex:1;min-width:0;font-weight:500}
+.list .chev{color:var(--fg2s);font-size:18px}
+.list .no{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accentSoft);color:var(--accent);font-weight:700;font-size:13px;flex:none}
+.ch{scroll-margin-top:64px}
+.ch>h2{display:flex;align-items:flex-start;gap:10px;margin:48px 4px 12px}
+.ch>h2 .tt{flex:1;min-width:0;padding-top:1px}
+.cn{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--accentFill);color:#fff;font-size:17px;font-weight:700;flex:none}
+.card{background:var(--card);border-radius:14px;padding:18px 16px;font-size:16px;line-height:1.75}
+.card>p{margin:0 0 12px}
+.card h3{font-size:18px;margin:28px 0 10px;text-wrap:balance}
+.card h3:first-child{margin-top:0}
+.defs{margin:0}.defs dt{font-weight:700;color:var(--accent);margin-top:12px}.defs dd{margin:2px 0 0}
+.pts{padding-left:1.2em;margin:0 0 12px}.pts li{margin:7px 0}
+.tbl{overflow-x:auto;margin:12px 0 16px;border:.5px solid var(--sep);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:.5px solid var(--sep);text-align:left;vertical-align:top}
+.tbl tr:last-child>*{border-bottom:0}
+.tbl thead th{background:var(--fill);font-size:13px;color:var(--fg2s);white-space:nowrap}
+.tbl tbody th{color:var(--accent);min-width:3.5em}
+.tbl table.wide{min-width:620px}
+.tbl td.num{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ox td.o,.ox td.x{text-align:center;font-weight:700;white-space:nowrap}.ox td.o{color:var(--ok)}.ox td.x{color:var(--ng)}
+.box{border-radius:12px;padding:12px 14px;margin:14px 0;font-size:15px;line-height:1.7}
+.box p{margin:4px 0}.bt{font-weight:700;font-size:14px;margin-bottom:2px}
+.box.mem{background:var(--accentSoft)}.mem .bt{color:var(--accent)}
+.box.trap{background:var(--fill)}
+.box.cl{background:var(--warnSoft)}.cl .bt{color:var(--warn)}
+.fm{font-weight:700;text-align:center;margin:10px 0!important;font-size:17px}
+.ex{background:var(--card);border-radius:14px;padding:14px 16px;margin-top:12px;border:1px dashed var(--accent)}
+.et{font-weight:700;color:var(--accent);margin-bottom:6px}
+.ex p{margin:0 0 6px;font-size:15px;line-height:1.7}
+.ex details summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:15px}
+.ex details p{margin-top:8px;padding:10px 12px;background:var(--fill);border-radius:8px}
+.go{display:block;text-align:center;margin-top:16px;padding:12px;border-radius:12px;background:var(--accentSoft);font-weight:600}
+.back{display:block;text-align:center;margin:18px 0 0;font-size:15px}
+footer{color:var(--fg2s);font-size:13px;text-align:center;margin-top:40px}
+.fig{margin:14px 0;padding:0;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;margin:0 auto;font-family:var(--font)}
+.fig figcaption{font-size:13px;color:var(--fg2s);margin-top:6px;line-height:1.55}
+.f-tx{fill:var(--fg);font-size:12px}.f-sm{fill:var(--fg2s);font-size:11px}
+.f-hx{fill:var(--accent);font-size:13px;font-weight:700}.f-hx2{fill:var(--fg);font-size:12px;font-weight:700}
+.f-wx{fill:var(--warn);font-size:12px;font-weight:600}.f-ngx{fill:var(--ng);font-size:12px;font-weight:600}
+.f-mu{stroke:var(--fg2s);stroke-width:1.2;fill:none}.f-bd{stroke:var(--fg);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.f-dash{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:4 3;fill:none}
+.f-curve{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linejoin:round}
+.f-box{fill:var(--fill);stroke:var(--sep)}.f-boxa{fill:var(--accentSoft);stroke:var(--accent)}
+.f-shade{fill:var(--accent);opacity:.12}.f-dot{fill:var(--accent)}.f-pt{fill:var(--ng)}
+.f-arr{fill:var(--fg2s)}
+@media (max-width:420px){h1{font-size:28px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-arr"/></marker></defs></svg>
+<nav class="nav" aria-label="目次"><div class="nav-in"><a href="#top">目次</a><a href="#c1">同化と異化</a><a href="#c2">タンパク質・脂質</a><a href="#c3">糖質代謝の概要</a><a href="#c4">飢餓</a><a href="#c5">糖尿病</a><a href="#c6">局在</a><a href="#c7">呼吸商</a><a href="#c8">悪液質</a><a href="#c9">頻出まとめ</a><a href="index.html">問題集へ</a></div></nav>
+<div class="wrap" id="top"><header class="top"><div class="eyebrow">横浜市立大学 医学部 生化学試験対策</div><h1>代謝の概要テキスト</h1><p class="byline">文責：矢作颯真</p></header>
+<div class="group"><p>代謝の全体像（同化・異化、局在、呼吸とATP、呼吸商、飢餓・糖尿病・悪液質）を、試験に出る形で整理し直したテキストです。問題演習は<a href="index.html#s3">短答問題集の「代謝の概要」</a>で。</p></div>
+<h2>目次</h2><div class="group list"><a href="#c1"><span class="no">1</span><span class="nm">代謝とは：同化・異化・両性経路</span><span class="chev">›</span></a><a href="#c2"><span class="no">2</span><span class="nm">タンパク質代謝と脂質代謝の概要</span><span class="chev">›</span></a><a href="#c3"><span class="no">3</span><span class="nm">糖質代謝の概要：基本式と4つの方向</span><span class="chev">›</span></a><a href="#c4"><span class="no">4</span><span class="nm">絶食・飢餓時の血漿成分</span><span class="chev">›</span></a><a href="#c5"><span class="no">5</span><span class="nm">インスリンと糖尿病</span><span class="chev">›</span></a><a href="#c6"><span class="no">6</span><span class="nm">細胞内での代謝経路の局在</span><span class="chev">›</span></a><a href="#c7"><span class="no">7</span><span class="nm">呼吸商（RQ）と呼吸交換比</span><span class="chev">›</span></a><a href="#c8"><span class="no">8</span><span class="nm">飢餓と悪液質の違い</span><span class="chev">›</span></a><a href="#c9"><span class="no">9</span><span class="nm">頻出ポイントまとめ</span><span class="chev">›</span></a></div>
+<section class="ch" id="c1"><h2><span class="cn">1</span><span class="tt">代謝とは：同化・異化・両性経路</span></h2><div class="card"><dl class="defs"><dt>異化</dt><dd>大きな分子を分解して<b>ATPを取り出す</b>反応。例：グルコースの酸化、脂肪酸のβ酸化。</dd><dt>同化</dt><dd>小さな前駆体から大きな化合物を合成する反応。例：アミノ酸からのタンパク質合成、グリコーゲン合成、脂肪酸合成。</dd><dt>両性経路</dt><dd>同化と異化の両方に関わる経路。例は<b>クエン酸回路</b>（オキサロ酢酸は糖新生やアスパラギン酸の材料＝同化、アセチルCoAの酸化でATP産生＝異化）。</dd></dl><p>健康な人では1日のタンパク質の同化量と異化量は釣り合っている。栄養失調やカロリー過多、悪液質などではこのバランスが崩れる。</p><figure class="fig"><svg viewBox="0 0 412 172" role="img" aria-label="3大栄養素の異化とアセチルCoA" style="max-width:412px"><rect x="10" y="14" width="130" height="40" rx="7" class="f-box"/><text x="75" y="31" class="f-hx2" text-anchor="middle">糖質</text><text x="75" y="46" class="f-sm" text-anchor="middle">→ 単糖（グルコース）</text><line x1="142" y1="34" x2="178" y2="92" class="f-mu" marker-end="url(#fa)"/><rect x="10" y="66" width="130" height="40" rx="7" class="f-box"/><text x="75" y="83" class="f-hx2" text-anchor="middle">タンパク質</text><text x="75" y="98" class="f-sm" text-anchor="middle">→ アミノ酸</text><line x1="142" y1="86" x2="178" y2="92" class="f-mu" marker-end="url(#fa)"/><rect x="10" y="118" width="130" height="40" rx="7" class="f-box"/><text x="75" y="135" class="f-hx2" text-anchor="middle">脂肪</text><text x="75" y="150" class="f-sm" text-anchor="middle">→ 脂肪酸＋グリセロール</text><line x1="142" y1="138" x2="178" y2="92" class="f-mu" marker-end="url(#fa)"/><rect x="180" y="70" width="100" height="44" rx="7" class="f-boxa"/><text x="230" y="88" class="f-hx" text-anchor="middle">アセチルCoA</text><text x="230" y="104" class="f-sm" text-anchor="middle">（異化の集約点）</text><line x1="282" y1="92" x2="300" y2="92" class="f-mu" marker-end="url(#fa)"/><rect x="302" y="70" width="100" height="44" rx="7" class="f-box"/><text x="352" y="88" class="f-hx2" text-anchor="middle">クエン酸回路</text><text x="352" y="104" class="f-sm" text-anchor="middle">→ 呼吸鎖でATP</text></svg><figcaption>糖質・タンパク質・脂肪は消化・吸収後、異化によってアセチルCoAに集約され、クエン酸回路で酸化される。</figcaption></figure><div class="tbl"><table class=""><thead><tr><th>栄養素</th><th>消化・吸収後</th><th>異化で最終的に</th></tr></thead><tbody><tr><th>糖質</th><td>単糖（主にグルコース）</td><td>アセチルCoA</td></tr><tr><th>タンパク質</th><td>アミノ酸</td><td>アセチルCoA（一部はクエン酸回路の中間体）</td></tr><tr><th>脂肪</th><td>脂肪酸＋グリセロール</td><td>アセチルCoA</td></tr></tbody></table></div><h3>アセチルCoAの行き先</h3><ul class="pts"><li>エネルギーが必要なとき：<b>クエン酸回路</b>でCO₂に酸化される。</li><li>エネルギーが十分なとき：<b>脂肪酸合成</b>（グリセロールとエステル化してトリアシルグリセロールに）、<b>コレステロール・ステロイド合成</b>、肝臓での<b>ケトン体合成</b>。</li></ul><div class="box trap"><div class="bt">ひっかけ</div><p>ヒトでは、アセチルCoAからグルコースへの<b>正味の変換はできない</b>（クエン酸回路で2個の炭素がCO₂として失われる）。糖新生の材料は乳酸・糖原性アミノ酸・グリセロールなど。</p></div></div><div class="ex"><div class="et">例題 1-1</div><p>異化に分類される反応の組合せはどれか。<br>a アミノ酸からのタンパク質合成　b グルコースの酸化　c グリコーゲン合成　d 脂肪酸のβ酸化　e 脂肪酸合成<br>A a,c　B b,d　C c,e　D a,e　E b,e</p><details><summary>答えを見る</summary><p><b>B</b>。bとdが異化。a・c・eは同化。</p></details></div></section>
+<section class="ch" id="c2"><h2><span class="cn">2</span><span class="tt">タンパク質代謝と脂質代謝の概要</span></h2><div class="card"><h3>タンパク質代謝</h3><ul class="pts"><li><b>必須アミノ酸</b>は食物から摂取。<b>非必須アミノ酸</b>は食物に加え、<b>アミノ基転移反応</b>による合成でも得られる。</li><li><b>脱アミノ反応</b>により、肝臓で<b>尿素</b>に変換される（アミノ基の行き先）。</li><li>アミノ基を失った<b>炭素骨格</b>は、クエン酸回路を経たCO₂への酸化、<b>グルコース合成</b>、<b>脂肪酸合成</b>、<b>ケトン体合成</b>に利用される。</li></ul><h3>脂質代謝</h3><ul class="pts"><li>脂肪酸の入手経路は、①<b>食事</b>、②糖質・アミノ酸からのアセチルCoAを材料とする<b>脂肪酸合成</b>。</li><li>脂肪酸は、グリセロールとエステル化して<b>トリアシルグリセロール（TG）</b>になる。TGは分解された脂肪酸が<b>β酸化</b>を受けて<b>アセチルCoA</b>になる。</li><li><b>アセチルCoAの行き先</b>：①クエン酸回路でCO₂に、②<b>コレステロール・ステロイド</b>の合成、③肝臓での<b>ケトン体</b>合成。</li></ul><p class="fm" style="font-size:14px">※ 脂質代謝の概要は講義では範囲外の可能性が高いとされている部分。詳細は脂質の分野で扱う。</p><div class="box trap"><div class="bt">ひっかけ</div><p>「炭素骨格が尿素に変換される」は<b>×</b>。尿素になるのはアミノ基由来のアンモニア。炭素骨格はグルコース・脂肪酸・ケトン体・CO₂の材料になる。</p></div></div><div class="ex"><div class="et">例題 2-1</div><p>アミノ酸代謝について正しいのはどれか。<br>A 炭素骨格は尿素に変換される　B 非必須アミノ酸は食物からのみ得られる　C アミノ基は肝臓で尿素に変換される　D 炭素骨格はケトン体合成に使われない　E 必須アミノ酸はアミノ基転移で合成される</p><details><summary>答えを見る</summary><p><b>C</b>。非必須アミノ酸はアミノ基転移でも合成される。</p></details></div></section>
+<section class="ch" id="c3"><h2><span class="cn">3</span><span class="tt">糖質代謝の概要：基本式と4つの方向</span></h2><div class="card"><p class="fm">C₆H₁₂O₆ ＋ 6O₂ ⇄ 6CO₂ ＋ 6H₂O　（ΔH＝−2938 kJ/mol、発熱）</p><p>グルコースは次の<b>4つの方向</b>に進む。</p><div class="tbl"><table class=""><thead><tr><th>方向</th><th>内容</th></tr></thead><tbody><tr><th>① グリコーゲンへの変化</th><td>筋肉・肝臓に貯蔵</td></tr><tr><th>② ペントースリン酸経路</th><td>グルコース6-P・トリオースリン酸 → <b>リボース5-P</b> → DNA・RNA（核酸合成）</td></tr><tr><th>③ 解糖</th><td>嫌気的 → <b>乳酸</b>、好気的 → <b>クエン酸回路</b>へ</td></tr><tr><th>④ 脂肪酸合成</th><td>過剰なアセチルCoAから</td></tr></tbody></table></div><h3>肝臓の役割</h3><ul class="pts"><li>腸で吸収した水溶性代謝物を血中から取り除き、基質の血中濃度を調整する。</li><li>食間・絶食時には<b>グリコーゲン分解・糖新生</b>によりグルコースを供給する（特に<b>脳</b>のため）。</li></ul></div><div class="ex"><div class="et">例題 3-1</div><p>グルコースが核酸合成のリボースの供給源となる経路はどれか。<br>A 解糖　B ペントースリン酸経路　C グリコーゲン合成　D 脂肪酸合成　E 糖新生</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c4"><h2><span class="cn">4</span><span class="tt">絶食・飢餓時の血漿成分</span></h2><div class="card"><p>健康成人の血漿濃度（mmol/L）。</p><div class="tbl"><table class=""><thead><tr><th></th><th>摂食</th><th>40時間絶食</th><th>7日間飢餓</th></tr></thead><tbody><tr><th>グルコース</th><td>5.5</td><td>3.6</td><td>3.5</td></tr><tr><th>非エステル化脂肪酸（NEFA）</th><td>0.30</td><td>1.15</td><td>1.19</td></tr><tr><th>ケトン体</th><td>無視できる</td><td>2.9</td><td>4.5</td></tr></tbody></table></div><ul class="pts"><li>グルコースは絶食でやや減少するだけで、以降はほぼ変化しない（肝臓のグリコーゲン分解と糖新生で維持）。</li><li>NEFAは絶食で脂肪組織から放出されて増える。</li><li><b>ケトン体は長期飢餓で顕著に増加</b>する（脳のエネルギー源）。</li></ul><h3>肝臓の役割</h3><p>食後は血中の水溶性代謝物を取り込んで基質濃度を調整し、<b>食間・絶食時にはグリコーゲン分解と糖新生でグルコースを血中へ供給</b>する（特に脳のために重要）。</p></div><div class="ex"><div class="et">例題 4-1</div><p>健康成人が40時間絶食から7日間飢餓に移行したとき、血漿中で顕著に増加するのはどれか。<br>A グルコース　B NEFA　C ケトン体　D 乳酸　E アミノ酸</p><details><summary>答えを見る</summary><p><b>C</b>。ケトン体は2.9→4.5 mmol/Lと増加。グルコース・NEFAはほぼ変わらない。</p></details></div></section>
+<section class="ch" id="c5"><h2><span class="cn">5</span><span class="tt">インスリンと糖尿病</span></h2><div class="card"><p><b>糖尿病</b>は「インスリン作用不足による慢性高血糖」と定義される。</p><ul class="pts"><li>インスリンは<b>GLUT4</b>を細胞膜に発現させ、特に<b>骨格筋</b>などでグルコース取り込みを促進する。</li><li>インスリン作用不足では、<b>筋肉の取り込みが低下</b>、<b>肝臓の糖新生が増加</b>して、血糖値が上昇する。</li></ul><h3>ポリオール経路と合併症</h3><p>赤血球・網膜・末梢神経・腎糸球体・水晶体などは、<b>インスリン非依存的</b>にグルコースを取り込む。高血糖で大量のグルコースが流入し、解糖が飽和すると、グルコース→<b>ソルビトール</b>→フルクトースの<b>ポリオール経路</b>が活性化し、<b>細胞内浸透圧が上昇</b>して細胞障害を起こす（網膜症・神経障害・腎症・白内障）。</p><div class="box cl"><div class="bt">臨床</div><p>48歳男性、口渇・多尿、空腹時血糖高値。インスリン作用不足 → 筋肉のグルコース取り込み<b>低下</b>、肝臓の糖新生<b>増加</b>、血糖<b>上昇</b>。</p></div></div><div class="ex"><div class="et">例題 5-1</div><p>2型糖尿病でインスリン作用が不足したとき、グルコース取り込みが低下しにくい組織はどれか。<br>A 骨格筋　B 心筋　C 脂肪組織　D 脳・赤血球　E 骨格筋と心筋</p><details><summary>答えを見る</summary><p><b>D</b>。脳・赤血球はGLUT3・GLUT1を介してインスリン非依存的に取り込む。</p></details></div></section>
+<section class="ch" id="c6"><h2><span class="cn">6</span><span class="tt">細胞内での代謝経路の局在</span></h2><div class="card"><div class="tbl"><table class=""><thead><tr><th>場所</th><th>代謝経路</th></tr></thead><tbody><tr><th>細胞質（サイトゾル）</th><td>解糖、ペントースリン酸経路、脂肪酸合成</td></tr><tr><th>ミトコンドリア</th><td>クエン酸回路、脂肪酸のβ酸化、ケトン体合成、呼吸鎖（酸化的リン酸化）</td></tr></tbody></table></div><p>ピルビン酸とオキサロ酢酸は、細胞質とミトコンドリアの間を移動する。<b>ピルビン酸</b>や<b>オキサロ酢酸</b>は細胞質とミトコンドリアの間を移動する（糖新生では、ミトコンドリアのオキサロ酢酸がホスホエノールピルビン酸を経てグルコース合成に向かう）。ミトコンドリアが機能不全に陥るとミトコンドリア病（ミトコンドリア脳筋症、乳酸アシドーシスなど）を起こす。</p><div class="box cl"><div class="bt">臨床：ミトコンドリア脳筋症</div><p>酸化的リン酸化が障害されるとATP産生を嫌気的解糖に頼り、NADHを再酸化できないため<b>ピルビン酸が乳酸へ変換</b>され、血中乳酸が高値になる（運動後の脱力・頭痛など）。</p></div></div><div class="ex"><div class="et">例題 6-1</div><p>ミトコンドリアで起こる経路の組合せはどれか。<br>a クエン酸回路　b 解糖　c β酸化　d ケトン体合成　e 脂肪酸合成<br>A a,c,d　B a,b,c　C b,c,e　D b,d,e　E a,c,e</p><details><summary>答えを見る</summary><p><b>A</b>。解糖と脂肪酸合成は細胞質。</p></details></div></section>
+<section class="ch" id="c7"><h2><span class="cn">7</span><span class="tt">呼吸商（RQ）と呼吸交換比</span></h2><div class="card"><p class="fm">呼吸商 ＝ 生成したCO₂ ／ 消費したO₂</p><figure class="fig"><svg viewBox="0 0 400 122" role="img" aria-label="呼吸商の目安" style="max-width:400px"><line x1="40" y1="60" x2="360" y2="60" class="f-mu"/><circle cx="60" cy="60" r="6" class="f-dot"/><text x="60" y="44" class="f-hx" text-anchor="middle">0.7</text><text x="60" y="86" class="f-sm" text-anchor="middle">脂質 約0.7</text><circle cx="200" cy="60" r="6" class="f-dot"/><text x="200" y="44" class="f-hx" text-anchor="middle">0.85</text><text x="200" y="86" class="f-sm" text-anchor="middle">標準食24時間後 0.85</text><circle cx="340" cy="60" r="6" class="f-dot"/><text x="340" y="44" class="f-hx" text-anchor="middle">1.0</text><text x="340" y="86" class="f-sm" text-anchor="middle">糖質 1.0</text><text x="60" y="110" class="f-wx" text-anchor="middle">空腹時は0.7に近づく</text><text x="340" y="110" class="f-wx" text-anchor="middle">糖質に富む食事後は1に近い</text></svg><figcaption>呼吸商（RQ）＝生成したCO₂／消費したO₂。基質で値が異なり、タンパク質は1未満（約0.8）。</figcaption></figure><ul class="pts"><li><b>呼吸商</b>は細胞レベルの値、<b>呼吸交換比</b>は呼気から求めた呼吸商。</li><li>糖質のみの酸化で<b>1.0</b>、脂質は約<b>0.7</b>、タンパク質は約0.8。</li><li>標準的な食事の24時間後は約<b>0.85</b>、糖質に富む食事の後は1に近く、<b>空腹時は脂肪の酸化が増えて0.7に近づく</b>。</li></ul><h3>計算：非タンパク質呼吸商（NP-RQ）</h3><p>糖質と脂質だけを利用していると考える。糖質による酸素消費の割合をxとして、x×1＋(1−x)×0.7＝0.85 → x＝0.5。よって<b>糖質50％・脂質50％</b>。</p><div class="box mem"><div class="bt">覚える</div><p>グルコース1分子：6CO₂／6O₂＝<b>1.0</b>。「糖質は1、脂質は約0.7」を軸に、食後は上がり、空腹時は下がる。</p></div></div><div class="ex"><div class="et">例題 7-1</div><p>呼吸商が0.85のとき、糖質1・脂質0.7とすると、脂質の寄与（酸素消費比）はいくつか。<br>A 15％　B 30％　C 50％　D 70％　E 85％</p><details><summary>答えを見る</summary><p><b>C</b>。x＋0.7(1−x)＝0.85 → x＝0.5。</p></details></div></section>
+<section class="ch" id="c8"><h2><span class="cn">8</span><span class="tt">飢餓と悪液質の違い</span></h2><div class="card"><p>悪液質は、がん・心不全・COPD・慢性腎不全・感染症などに伴う<b>全身性の代謝異常症候群</b>で、単なる低栄養ではない。</p><div class="tbl"><table class=""><thead><tr><th></th><th>飢餓（正常な代謝）</th><th>悪液質</th></tr></thead><tbody><tr><th>代謝</th><td>省エネモード</td><td><b>亢進</b></td></tr><tr><th>骨格筋</th><td>保たれる</td><td><b>分解される</b></td></tr><tr><th>栄養補給</th><td>改善する</td><td>改善しにくい</td></tr><tr><th>炎症</th><td>なし</td><td><b>あり</b>（IL-6など炎症性サイトカイン）</td></tr><tr><th>エネルギー源</th><td>脂肪が中心</td><td>筋肉のタンパク質も</td></tr></tbody></table></div><p>悪液質での変化は、基礎疾患による炎症 → <b>タンパク質異化速度の顕著な増加</b> → アミノ酸レベルの上昇 → 糖新生やエネルギー源として利用、の順。</p></div><div class="ex"><div class="et">例題 8-1</div><p>悪液質について正しいのはどれか。<br>A 栄養補給で容易に改善する　B 炎症を伴わない　C 筋肉も分解される　D 代謝は低下する　E 飢餓と同じ病態</p><details><summary>答えを見る</summary><p><b>C</b>。炎症性サイトカインにより代謝が亢進し、筋肉も分解される。</p></details></div></section>
+<section class="ch" id="c9"><h2><span class="cn">9</span><span class="tt">頻出ポイントまとめ</span></h2><div class="card"><p>○×を言えるまで繰り返す。</p><div class="tbl"><table class="ox"><thead><tr><th>文</th><th>正誤</th></tr></thead><tbody><tr><td>クエン酸回路は同化と異化の両方に関わる両性経路である</td><td class="o">○</td></tr><tr><td>アセチルCoAから正味でグルコースが合成される</td><td class="x">×</td></tr><tr><td>解糖は細胞質、β酸化はミトコンドリアで起こる</td><td class="o">○</td></tr><tr><td>脂肪酸合成はミトコンドリアで起こる</td><td class="x">×</td></tr><tr><td>糖質の呼吸商は1、脂質は約0.7である</td><td class="o">○</td></tr><tr><td>空腹時の呼吸交換比は1に近づく</td><td class="x">×</td></tr><tr><td>7日間の飢餓で血漿ケトン体は顕著に増加する</td><td class="o">○</td></tr><tr><td>絶食時に肝臓は血中グルコースを取り込み続ける</td><td class="x">×</td></tr><tr><td>糖尿病は、インスリン作用不足による慢性高血糖である</td><td class="o">○</td></tr><tr><td>インスリン非依存的に取り込む組織では、ポリオール経路が活性化する</td><td class="o">○</td></tr><tr><td>悪液質は、栄養補給で容易に改善する</td><td class="x">×</td></tr><tr><td>アミノ酸の炭素骨格そのものが尿素に変換される</td><td class="x">×</td></tr><tr><td>核酸のリボースはペントースリン酸経路から供給される</td><td class="o">○</td></tr></tbody></table></div><a class="go" href="index.html#s3">代謝の概要の短答問題を解く ›</a></div></section>
+<a class="back" href="#top">目次へ戻る</a><footer>代謝の概要テキスト</footer></div>
+</body></html>

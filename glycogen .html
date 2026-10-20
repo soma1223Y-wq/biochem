@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>グリコーゲン代謝と糖新生テキスト</title>
+<style>
+:root{
+  --bg:#F2F2F7; --card:#FFFFFF; --fg:#1C1C1E; --fg2s:#6C6C70;
+  --sep:#C6C6C8; --fill:#E9E9EE; --accent:#0A66D9; --accentFill:#007AFF;
+  --accentSoft:#E5F0FF; --ok:#248A3D; --okSoft:#E3F5E7; --ng:#D70015; --ngSoft:#FDE7E9;
+  --warn:#C93400; --warnSoft:#FFF0E3; --nav:rgba(242,242,247,.86);
+  --font:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --card:#1C1C1E; --fg:#F2F2F7; --fg2s:#98989F;
+  --sep:#38383A; --fill:#2C2C2E; --accent:#4DA3FF; --accentFill:#0A84FF;
+  --accentSoft:#0B2540; --ok:#30D158; --okSoft:#12331B; --ng:#FF6961; --ngSoft:#3A1517;
+  --warn:#FF9F0A; --warnSoft:#3A2608; --nav:rgba(18,18,20,.86); color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--navh,49px) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-decoration:none}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
+.nav-in{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:760px;margin:0 auto;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;font-size:14px;font-weight:500;padding:6px 12px;border-radius:980px;color:var(--accent);white-space:nowrap}
+.nav a:hover,.nav a:focus-visible{background:var(--accentSoft);outline:none}
+.wrap{max-width:760px;margin:0 auto;padding-block:8px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding:32px 4px 8px}
+header.top .eyebrow{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.04em}
+h1{font-size:34px;line-height:1.2;font-weight:700;margin:4px 0 6px;letter-spacing:-.01em;text-wrap:balance}
+.byline{color:var(--fg2s);font-size:14px;margin:0}
+h2{font-size:22px;font-weight:700;margin:36px 4px 10px;text-wrap:balance}
+.group{background:var(--card);border-radius:12px;overflow:hidden}
+.group p{margin:0;padding:14px 16px;font-size:15px}
+.list a{display:flex;align-items:center;gap:12px;padding:12px 16px;color:var(--fg);border-top:.5px solid var(--sep)}
+.list a:first-child{border-top:0}
+.list a:hover{background:var(--fill)}
+.list .nm{flex:1;min-width:0;font-weight:500}
+.list .chev{color:var(--fg2s);font-size:18px}
+.list .no{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accentSoft);color:var(--accent);font-weight:700;font-size:13px;flex:none}
+.ch{scroll-margin-top:64px}
+.ch>h2{display:flex;align-items:flex-start;gap:10px;margin:48px 4px 12px}
+.ch>h2 .tt{flex:1;min-width:0;padding-top:1px}
+.cn{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--accentFill);color:#fff;font-size:17px;font-weight:700;flex:none}
+.card{background:var(--card);border-radius:14px;padding:18px 16px;font-size:16px;line-height:1.75}
+.card>p{margin:0 0 12px}
+.card h3{font-size:18px;margin:28px 0 10px;text-wrap:balance}
+.card h3:first-child{margin-top:0}
+.defs{margin:0}.defs dt{font-weight:700;color:var(--accent);margin-top:12px}.defs dd{margin:2px 0 0}
+.pts{padding-left:1.2em;margin:0 0 12px}.pts li{margin:7px 0}
+.tbl{overflow-x:auto;margin:12px 0 16px;border:.5px solid var(--sep);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:.5px solid var(--sep);text-align:left;vertical-align:top}
+.tbl tr:last-child>*{border-bottom:0}
+.tbl thead th{background:var(--fill);font-size:13px;color:var(--fg2s);white-space:nowrap}
+.tbl tbody th{color:var(--accent);min-width:3.5em}
+.tbl table.wide{min-width:620px}
+.tbl td.num{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ox td.o,.ox td.x{text-align:center;font-weight:700;white-space:nowrap}.ox td.o{color:var(--ok)}.ox td.x{color:var(--ng)}
+.box{border-radius:12px;padding:12px 14px;margin:14px 0;font-size:15px;line-height:1.7}
+.box p{margin:4px 0}.bt{font-weight:700;font-size:14px;margin-bottom:2px}
+.box.mem{background:var(--accentSoft)}.mem .bt{color:var(--accent)}
+.box.trap{background:var(--fill)}
+.box.cl{background:var(--warnSoft)}.cl .bt{color:var(--warn)}
+.fm{font-weight:700;text-align:center;margin:10px 0!important;font-size:17px}
+.ex{background:var(--card);border-radius:14px;padding:14px 16px;margin-top:12px;border:1px dashed var(--accent)}
+.et{font-weight:700;color:var(--accent);margin-bottom:6px}
+.ex p{margin:0 0 6px;font-size:15px;line-height:1.7}
+.ex details summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:15px}
+.ex details p{margin-top:8px;padding:10px 12px;background:var(--fill);border-radius:8px}
+.go{display:block;text-align:center;margin-top:16px;padding:12px;border-radius:12px;background:var(--accentSoft);font-weight:600}
+.back{display:block;text-align:center;margin:18px 0 0;font-size:15px}
+footer{color:var(--fg2s);font-size:13px;text-align:center;margin-top:40px}
+.fig{margin:14px 0;padding:0;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;margin:0 auto;font-family:var(--font)}
+.fig figcaption{font-size:13px;color:var(--fg2s);margin-top:6px;line-height:1.55}
+.f-tx{fill:var(--fg);font-size:12px}.f-sm{fill:var(--fg2s);font-size:11px}
+.f-hx{fill:var(--accent);font-size:13px;font-weight:700}.f-hx2{fill:var(--fg);font-size:12px;font-weight:700}
+.f-wx{fill:var(--warn);font-size:12px;font-weight:600}.f-ngx{fill:var(--ng);font-size:12px;font-weight:600}
+.f-mu{stroke:var(--fg2s);stroke-width:1.2;fill:none}.f-bd{stroke:var(--fg);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.f-dash{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:4 3;fill:none}
+.f-curve{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linejoin:round}
+.f-box{fill:var(--fill);stroke:var(--sep)}.f-boxa{fill:var(--accentSoft);stroke:var(--accent)}
+.f-shade{fill:var(--accent);opacity:.12}.f-dot{fill:var(--accent)}.f-pt{fill:var(--ng)}
+.f-arr{fill:var(--fg2s)}
+@media (max-width:420px){h1{font-size:28px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-arr"/></marker></defs></svg>
+<nav class="nav" aria-label="目次"><div class="nav-in"><a href="#top">目次</a><a href="#c1">グリコーゲン</a><a href="#c2">分解</a><a href="#c3">調節</a><a href="#c4">貯蔵症</a><a href="#c5">糖新生</a><a href="#c6">糖輸送</a><a href="#c7">頻出まとめ</a><a href="index.html">問題集へ</a></div></nav>
+<div class="wrap" id="top"><header class="top"><div class="eyebrow">横浜市立大学 医学部 生化学試験対策</div><h1>グリコーゲン代謝と糖新生テキスト</h1><p class="byline">文責：矢作颯真</p></header>
+<div class="group"><p>グリコーゲンの合成・分解・調節、貯蔵病、糖新生、糖輸送体を整理したテキストです。問題演習は<a href="index.html#s5">短答問題集の「グリコーゲン代謝と糖新生」</a>で。</p></div>
+<h2>目次</h2><div class="group list"><a href="#c1"><span class="no">1</span><span class="nm">グリコーゲンの構造と合成</span><span class="chev">›</span></a><a href="#c2"><span class="no">2</span><span class="nm">グリコーゲンの分解</span><span class="chev">›</span></a><a href="#c3"><span class="no">3</span><span class="nm">ホルモンによる調節</span><span class="chev">›</span></a><a href="#c4"><span class="no">4</span><span class="nm">グリコーゲン貯蔵病</span><span class="chev">›</span></a><a href="#c5"><span class="no">5</span><span class="nm">糖新生</span><span class="chev">›</span></a><a href="#c6"><span class="no">6</span><span class="nm">糖輸送体・ヘキソキナーゼとグルコキナーゼ</span><span class="chev">›</span></a><a href="#c7"><span class="no">7</span><span class="nm">頻出ポイントまとめ</span><span class="chev">›</span></a></div>
+<section class="ch" id="c1"><h2><span class="cn">1</span><span class="tt">グリコーゲンの構造と合成</span></h2><div class="card"><p>グリコーゲンは動物の貯蔵多糖（植物ではデンプンに相当）。α-D-グルコースが枝分かれした重合体で、ヒトでは<b>肝臓と筋肉にほとんど貯蔵</b>される。全グリコーゲンの<b>約75％は筋肉</b>に存在し、<b>肝臓のグリコーゲンは空腹時に血糖値を維持</b>するための貯蔵として働く。</p><ul class="pts"><li>グルコースの<b>α1→4結合</b>の鎖に、<b>α1→6結合</b>の枝分かれをもつ貯蔵多糖。<b>肝臓</b>（血糖維持）と<b>骨格筋</b>（自身のエネルギー）に貯蔵。</li><li>合成の流れ：グルコース →（<b>グルコキナーゼ</b>、解糖と共通）→ G6P ⇄（<b>ホスホグルコムターゼ</b>、可逆）→ G1P →（<b>UDP-グルコースピロホスホリラーゼ</b>、UTP→PPi、<b>不可逆</b>）→ <b>UDP-グルコース</b> →（<b>グリコーゲンシンターゼ</b>、<b>不可逆</b>）→ グリコーゲン。</li><li><b>グリコーゲンシンターゼ</b>：UDP-グルコースのC1と、グリコーゲン末端グルコース残基のC4の間に<b>α1→4結合</b>を形成し、UDPを遊離。</li><li><b>分枝酵素</b>：α1→4鎖が<b>11残基以上</b>に伸びると、鎖の一部（約7残基）を切断し、α1→6結合で別の鎖に転移する（グルコース同士の結合に関与）。</li></ul><div class="box trap"><div class="bt">ひっかけ</div><p>グリコーゲン合成のグルコース供与体は<b>UDP-グルコース</b>（ATP-グルコースやGDP-グルコースではない）。</p></div></div><div class="ex"><div class="et">例題 1-1</div><p>グリコーゲンシンターゼがつくる結合はどれか。<br>A α1→6　B α1→4　C β1→4　D β1→6　E α1→2</p><details><summary>答えを見る</summary><p><b>B</b>。α1→6は分枝酵素。</p></details></div></section>
+<section class="ch" id="c2"><h2><span class="cn">2</span><span class="tt">グリコーゲンの分解</span></h2><div class="card"><ul class="pts"><li>分解には<b>順序</b>がある。①<b>グリコーゲンホスホリラーゼ</b>（律速、PLP）が最も外側の鎖の末端からグルコース残基を<b>残り4分子になるまで</b>順次分解し<b>G1P</b>を生成。②<b>グルカントランスフェラーゼ</b>（脱分枝酵素の一部）が残り4分子のうち末端から<b>3分子を別の枝へ転移</b>し、α1→6結合をもつグルコース1個を露出。③<b>1,6-グリコシダーゼ</b>がα1→6結合を加水分解して<b>遊離グルコース</b>を生じる。</li><li>G1P →（ホスホグルコムターゼ）→ G6P →（<b>G6Pase</b>）→ グルコース。<b>G6Paseは肝臓・腎臓・膵臓のみ</b>に発現し、グルコースを血中へ放出できる。<b>筋肉は発現していない</b>ため、筋グリコーゲンの分解は直接的には血中グルコースを生じない（解糖に利用される）。</li></ul></div><div class="ex"><div class="et">例題 2-1</div><p>筋肉のグリコーゲンが血糖維持に寄与しない理由はどれか。<br>A ホスホリラーゼがない　B G6Paseがない　C 脱分枝酵素がない　D GLUT4がない　E UDPがない</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c3"><h2><span class="cn">3</span><span class="tt">ホルモンによる調節</span></h2><div class="card"><figure class="fig"><svg viewBox="0 0 340 250" role="img" aria-label="グリコーゲン代謝の調節（グルカゴン／アドレナリン）" style="max-width:340px"><rect x="20" y="20" width="300" height="30" rx="7" class="f-boxa"/><text x="170" y="40" class="f-hx2" text-anchor="middle">グルカゴン／アドレナリン</text><line x1="170" y1="50" x2="170" y2="66" class="f-mu" marker-end="url(#fa)"/><rect x="20" y="66" width="300" height="30" rx="7" class="f-box"/><text x="170" y="86" class="f-hx2" text-anchor="middle">受容体 → cAMP ↑</text><line x1="170" y1="96" x2="170" y2="112" class="f-mu" marker-end="url(#fa)"/><rect x="20" y="112" width="300" height="30" rx="7" class="f-box"/><text x="170" y="132" class="f-hx2" text-anchor="middle">PKA 活性化</text><line x1="170" y1="142" x2="170" y2="158" class="f-mu" marker-end="url(#fa)"/><rect x="20" y="158" width="300" height="30" rx="7" class="f-box"/><text x="170" y="178" class="f-hx2" text-anchor="middle">ホスホリラーゼキナーゼ → ホスホリラーゼ活性化</text><line x1="170" y1="188" x2="170" y2="204" class="f-mu" marker-end="url(#fa)"/><rect x="20" y="204" width="145" height="34" rx="7" class="f-box"/><text x="92" y="225" class="f-wx" text-anchor="middle">グリコーゲン分解 ↑</text><rect x="175" y="204" width="145" height="34" rx="7" class="f-box"/><text x="247" y="225" class="f-ngx" text-anchor="middle">合成酵素 不活性化</text></svg><figcaption>PKAは分解を促進し、グリコーゲンシンターゼをリン酸化して不活性化する。インスリンはPP1を介して逆方向（脱リン酸化）に働く。</figcaption></figure><div class="tbl"><table class=""><thead><tr><th></th><th>グルカゴン／アドレナリン</th><th>インスリン</th></tr></thead><tbody><tr><th>PKA</th><td>活性化</td><td>—</td></tr><tr><th>分解（ホスホリラーゼ）</th><td>促進</td><td>抑制</td></tr><tr><th>合成（シンターゼ）</th><td>抑制</td><td>促進（PP1で脱リン酸化）</td></tr></tbody></table></div><ul class="pts"><li><b>グリコーゲンシンターゼ（合成）は脱リン酸化で活性、リン酸化で不活性</b>。<b>グリコーゲンホスホリラーゼ（分解）はリン酸化で活性、脱リン酸化で不活性</b>。</li><li>これらをリン酸化する酵素が<b>PKA（cAMP依存性プロテインキナーゼ）</b>、脱リン酸化する酵素が<b>PP1（プロテインホスファターゼ1）</b>。</li><li><b>ATP →（アデニル酸シクラーゼ）→ cAMP</b>。アデニル酸シクラーゼはアドレナリン・ノルアドレナリン・グルカゴン・インスリンなどのホルモンに応答して活性が変わる。cAMPがPKAの活性を調節する。</li><li><b>インスリン</b>（血糖値↓）：肝臓でグリコーゲン合成↑・分解↓。PP1活性化 → シンターゼ<b>活性</b>、ホスホリラーゼ<b>不活性</b>。</li><li><b>グルカゴン</b>（血糖値↑）：肝臓で合成↓・分解↑。PKA活性化 → シンターゼ<b>不活性</b>、ホスホリラーゼ<b>活性</b>。</li><li><b>アドレナリン</b>（血糖値↑）：PKA活性化＋<b>Ca²⁺（筋肉のみ）</b>。合成↓・分解↑。</li><li>グルカゴンは<b>肝臓</b>に作用（筋肉の受容体は乏しい）。</li></ul></div><div class="ex"><div class="et">例題 3-1</div><p>グルカゴンによるグリコーゲン代謝の変化として正しいのはどれか。<br>A 分解↑・合成↑　B 分解↑・合成↓　C 分解↓・合成↑　D 分解↓・合成↓　E 変化なし</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c4"><h2><span class="cn">4</span><span class="tt">グリコーゲン貯蔵病</span></h2><div class="card"><div class="tbl"><table class=""><thead><tr><th>型</th><th>欠損酵素</th><th>特徴</th></tr></thead><tbody><tr><th>I型（von Gierke）</th><td><b>G6Pase</b></td><td>空腹時低血糖、肝腫大、乳酸アシドーシス、高尿酸血症、高脂血症</td></tr><tr><th>II型（Pompe）</th><td><b>酸性α-グルコシダーゼ</b>（リソソーム）</td><td>心筋肥大、筋力低下</td></tr><tr><th>V型（McArdle）</th><td><b>筋ホスホリラーゼ</b></td><td>運動時の筋痛・こむら返り、ミオグロビン尿、乳酸が上昇しない</td></tr></tbody></table></div></div><div class="ex"><div class="et">例題 4-1</div><p>運動時の筋痛と運動後の血中乳酸が上昇しないことを特徴とするのはどれか。<br>A I型　B II型　C III型　D V型　E VI型</p><details><summary>答えを見る</summary><p><b>D</b>。筋ホスホリラーゼ欠損（McArdle）。</p></details></div></section>
+<section class="ch" id="c5"><h2><span class="cn">5</span><span class="tt">糖新生</span></h2><div class="card"><p><b>糖新生</b>とは、糖質でない前駆体（例：乳酸・ピルビン酸）からグルコースを合成する過程。解糖には不可逆反応があるため、糖新生は解糖に用いる酵素だけでは逆反応は不可。解糖を迂回する経路でグルコースに戻す（とはいえ大体は解糖の中間体まで戻し、そこから解糖の逆を送る）。主に<b>肝臓</b>（一部は腎臓）で起こる。</p><div class="tbl"><table class=""><thead><tr><th>解糖の不可逆反応</th><th>糖新生の迂回酵素</th></tr></thead><tbody><tr><th>グルコース→G6P（HK/GK）</th><td><b>グルコース-6-ホスファターゼ（G6Pase）</b></td></tr><tr><th>F6P→F1,6BP（PFK-1）</th><td><b>フルクトース-1,6-ビスホスファターゼ（FBPase-1）</b></td></tr><tr><th>PEP→ピルビン酸（PK）</th><td><b>ピルビン酸カルボキシラーゼ（PC）＋PEPカルボキシキナーゼ（PEPCK）</b></td></tr></tbody></table></div><ul class="pts"><li>原料：<b>乳酸、糖原性アミノ酸（アラニンなど）、グリセロール、プロピオン酸</b>。脂肪酸（偶数）は不可。</li><li>PCは<b>ビオチン</b>依存、アセチルCoAで活性化（脂肪酸酸化が進むと糖新生が促進）。</li><li>インスリン→抑制、グルカゴン・コルチゾール→促進。</li><li>乳酸はピルビン酸に（後述のコリ回路）、糖原性アミノ酸（例：Asp）はクエン酸回路の中間体や解糖の中間体に変換可能なので、糖新生でグルコースに変換できる。</li><li><b>糖新生が促進されすぎると高血糖</b>（糖尿病、糖尿病ケトアシドーシス）、<b>しなさすぎると低血糖</b>（アルコール性低血糖、肝不全）。</li></ul><figure class="fig"><svg viewBox="0 0 380 80" role="img" aria-label="Cori回路" style="max-width:380px"><rect x="10" y="14" width="130" height="40" rx="7" class="f-boxa"/><text x="75" y="30" class="f-hx" text-anchor="middle">筋肉</text><text x="75" y="46" class="f-sm" text-anchor="middle">グルコース→乳酸</text><rect x="240" y="14" width="130" height="40" rx="7" class="f-boxa"/><text x="305" y="30" class="f-hx" text-anchor="middle">肝臓</text><text x="305" y="46" class="f-sm" text-anchor="middle">乳酸→グルコース</text><line x1="140" y1="26" x2="238" y2="26" class="f-mu" marker-end="url(#fa)"/><text x="190" y="20" class="f-sm" text-anchor="middle">乳酸（血流）</text><line x1="238" y1="44" x2="140" y2="44" class="f-mu" marker-end="url(#fa)"/><text x="190" y="62" class="f-sm" text-anchor="middle">グルコース（血流）</text></svg><figcaption>Cori回路：筋肉で生じた乳酸を肝臓が糖新生でグルコースに戻す。</figcaption></figure><ol class="pts"><li>運動中の（O₂が少ない）筋細胞では、嫌気的解糖でピルビン酸＋NADH → 乳酸＋NAD⁺（LDH）。赤血球などミトコンドリアをもたない細胞も同様。</li><li>乳酸が血流で肝臓へ → 肝臓は血流が豊富でO₂が多く、乳酸 → ピルビン酸（LDH）→ 糖新生でグルコース。</li><li>グルコースを血流で、ミトコンドリアをもたない細胞や筋細胞に供給（①へ戻る）。この一連の流れが<b>コリ回路</b>。</li></ol><div class="box cl"><div class="bt">臨床</div><p><b>アルコール</b>：肝でNADH／NAD⁺比が上昇 → 乳酸→ピルビン酸、OAA→リンゴ酸が進まず糖新生が抑制 → 低血糖。<b>糖尿病性ケトアシドーシス</b>：インスリン欠乏で糖新生・脂肪分解↑、ケトン体産生↑。</p></div></div><div class="ex"><div class="et">例題 5-1</div><p>糖新生で、ピルビン酸からPEPに至る反応に関与する酵素の組合せはどれか。<br>A PK＋PFK-1　B PC＋PEPCK　C G6Pase＋FBPase　D HK＋PK　E LDH＋PDH</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c6"><h2><span class="cn">6</span><span class="tt">糖輸送体・ヘキソキナーゼとグルコキナーゼ</span></h2><div class="card"><div class="tbl"><table class=""><thead><tr><th></th><th>ヘキソキナーゼ</th><th>グルコキナーゼ（GK）</th></tr></thead><tbody><tr><th>Km</th><td>低い（約0.05 mmol/L）</td><td>高い（約10 mmol/L）</td></tr><tr><th>G6Pによる阻害</th><td>あり</td><td>なし</td></tr><tr><th>存在</th><td>全身</td><td>肝臓・膵β細胞</td></tr><tr><th>意義</th><td>全身の組織で一定速度で反応。G6Pによるネガティブフィードバック（G6P多いと速度低下）で生体維持を目的とする</td><td>血糖値（血中グルコース濃度）に依存。流入した大量のグルコースを解糖しないといけないため、G6Pのネガティブフィードバックがない</td></tr></tbody></table></div><div class="tbl"><table class=""><thead><tr><th>輸送体</th><th>特徴</th></tr></thead><tbody><tr><th>GLUT1</th><td>赤血球・脳（血液脳関門）、基礎的取り込み</td></tr><tr><th>GLUT2</th><td>肝臓・膵β細胞・小腸・腎、Kmが高い</td></tr><tr><th>GLUT3</th><td>神経細胞</td></tr><tr><th>GLUT4</th><td><b>インスリン依存</b>（筋・脂肪）</td></tr><tr><th>GLUT5</th><td>フルクトース</td></tr><tr><th>SGLT1</th><td>小腸・腎、Na⁺共役</td></tr><tr><th>SGLT2</th><td>腎近位尿細管、糖の再吸収（SGLT2阻害薬）</td></tr></tbody></table></div></div><div class="ex"><div class="et">例題 6-1</div><p>インスリン刺激でGLUT4が細胞膜に発現し、グルコースを取り込む組織はどれか。<br>A 赤血球　B 脳　C 肝臓　D 骨格筋　E 腎尿細管</p><details><summary>答えを見る</summary><p><b>D</b>。</p></details></div></section>
+<section class="ch" id="c7"><h2><span class="cn">7</span><span class="tt">頻出ポイントまとめ</span></h2><div class="card"><div class="tbl"><table class="ox"><thead><tr><th>文</th><th>正誤</th></tr></thead><tbody><tr><td>グリコーゲン合成の活性化グルコースはUDP-グルコースである</td><td class="o">○</td></tr><tr><td>分枝酵素はα1→6結合をつくる</td><td class="o">○</td></tr><tr><td>グリコーゲンホスホリラーゼはG1Pを生成する</td><td class="o">○</td></tr><tr><td>筋肉にはG6Paseがある</td><td class="x">×</td></tr><tr><td>グルカゴンはグリコーゲン合成を促進する</td><td class="x">×</td></tr><tr><td>PKAはグリコーゲンシンターゼを不活性化する</td><td class="o">○</td></tr><tr><td>I型グリコーゲン貯蔵病はG6Pase欠損である</td><td class="o">○</td></tr><tr><td>糖新生の迂回酵素にFBPase-1が含まれる</td><td class="o">○</td></tr><tr><td>偶数鎖脂肪酸は糖新生の材料になる</td><td class="x">×</td></tr><tr><td>アルコール多飲は低血糖を起こしうる</td><td class="o">○</td></tr><tr><td>グルコキナーゼはG6Pで阻害される</td><td class="x">×</td></tr><tr><td>GLUT4はインスリン依存性である</td><td class="o">○</td></tr></tbody></table></div><a class="go" href="index.html#s5">グリコーゲン代謝と糖新生の短答問題を解く ›</a></div></section>
+<a class="back" href="#top">目次へ戻る</a><footer>グリコーゲン代謝と糖新生テキスト</footer></div>
+</body></html>

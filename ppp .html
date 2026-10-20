@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ペントースリン酸経路・ウロン酸回路・果糖代謝テキスト</title>
+<style>
+:root{
+  --bg:#F2F2F7; --card:#FFFFFF; --fg:#1C1C1E; --fg2s:#6C6C70;
+  --sep:#C6C6C8; --fill:#E9E9EE; --accent:#0A66D9; --accentFill:#007AFF;
+  --accentSoft:#E5F0FF; --ok:#248A3D; --okSoft:#E3F5E7; --ng:#D70015; --ngSoft:#FDE7E9;
+  --warn:#C93400; --warnSoft:#FFF0E3; --nav:rgba(242,242,247,.86);
+  --font:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --card:#1C1C1E; --fg:#F2F2F7; --fg2s:#98989F;
+  --sep:#38383A; --fill:#2C2C2E; --accent:#4DA3FF; --accentFill:#0A84FF;
+  --accentSoft:#0B2540; --ok:#30D158; --okSoft:#12331B; --ng:#FF6961; --ngSoft:#3A1517;
+  --warn:#FF9F0A; --warnSoft:#3A2608; --nav:rgba(18,18,20,.86); color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--navh,49px) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-decoration:none}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
+.nav-in{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:760px;margin:0 auto;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;font-size:14px;font-weight:500;padding:6px 12px;border-radius:980px;color:var(--accent);white-space:nowrap}
+.nav a:hover,.nav a:focus-visible{background:var(--accentSoft);outline:none}
+.wrap{max-width:760px;margin:0 auto;padding-block:8px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding:32px 4px 8px}
+header.top .eyebrow{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.04em}
+h1{font-size:34px;line-height:1.2;font-weight:700;margin:4px 0 6px;letter-spacing:-.01em;text-wrap:balance}
+.byline{color:var(--fg2s);font-size:14px;margin:0}
+h2{font-size:22px;font-weight:700;margin:36px 4px 10px;text-wrap:balance}
+.group{background:var(--card);border-radius:12px;overflow:hidden}
+.group p{margin:0;padding:14px 16px;font-size:15px}
+.list a{display:flex;align-items:center;gap:12px;padding:12px 16px;color:var(--fg);border-top:.5px solid var(--sep)}
+.list a:first-child{border-top:0}
+.list a:hover{background:var(--fill)}
+.list .nm{flex:1;min-width:0;font-weight:500}
+.list .chev{color:var(--fg2s);font-size:18px}
+.list .no{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accentSoft);color:var(--accent);font-weight:700;font-size:13px;flex:none}
+.ch{scroll-margin-top:64px}
+.ch>h2{display:flex;align-items:flex-start;gap:10px;margin:48px 4px 12px}
+.ch>h2 .tt{flex:1;min-width:0;padding-top:1px}
+.cn{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--accentFill);color:#fff;font-size:17px;font-weight:700;flex:none}
+.card{background:var(--card);border-radius:14px;padding:18px 16px;font-size:16px;line-height:1.75}
+.card>p{margin:0 0 12px}
+.card h3{font-size:18px;margin:28px 0 10px;text-wrap:balance}
+.card h3:first-child{margin-top:0}
+.defs{margin:0}.defs dt{font-weight:700;color:var(--accent);margin-top:12px}.defs dd{margin:2px 0 0}
+.pts{padding-left:1.2em;margin:0 0 12px}.pts li{margin:7px 0}
+.tbl{overflow-x:auto;margin:12px 0 16px;border:.5px solid var(--sep);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:.5px solid var(--sep);text-align:left;vertical-align:top}
+.tbl tr:last-child>*{border-bottom:0}
+.tbl thead th{background:var(--fill);font-size:13px;color:var(--fg2s);white-space:nowrap}
+.tbl tbody th{color:var(--accent);min-width:3.5em}
+.tbl table.wide{min-width:620px}
+.tbl td.num{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ox td.o,.ox td.x{text-align:center;font-weight:700;white-space:nowrap}.ox td.o{color:var(--ok)}.ox td.x{color:var(--ng)}
+.box{border-radius:12px;padding:12px 14px;margin:14px 0;font-size:15px;line-height:1.7}
+.box p{margin:4px 0}.bt{font-weight:700;font-size:14px;margin-bottom:2px}
+.box.mem{background:var(--accentSoft)}.mem .bt{color:var(--accent)}
+.box.trap{background:var(--fill)}
+.box.cl{background:var(--warnSoft)}.cl .bt{color:var(--warn)}
+.fm{font-weight:700;text-align:center;margin:10px 0!important;font-size:17px}
+.ex{background:var(--card);border-radius:14px;padding:14px 16px;margin-top:12px;border:1px dashed var(--accent)}
+.et{font-weight:700;color:var(--accent);margin-bottom:6px}
+.ex p{margin:0 0 6px;font-size:15px;line-height:1.7}
+.ex details summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:15px}
+.ex details p{margin-top:8px;padding:10px 12px;background:var(--fill);border-radius:8px}
+.go{display:block;text-align:center;margin-top:16px;padding:12px;border-radius:12px;background:var(--accentSoft);font-weight:600}
+.back{display:block;text-align:center;margin:18px 0 0;font-size:15px}
+footer{color:var(--fg2s);font-size:13px;text-align:center;margin-top:40px}
+.fig{margin:14px 0;padding:0;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;margin:0 auto;font-family:var(--font)}
+.fig figcaption{font-size:13px;color:var(--fg2s);margin-top:6px;line-height:1.55}
+.f-tx{fill:var(--fg);font-size:12px}.f-sm{fill:var(--fg2s);font-size:11px}
+.f-hx{fill:var(--accent);font-size:13px;font-weight:700}.f-hx2{fill:var(--fg);font-size:12px;font-weight:700}
+.f-wx{fill:var(--warn);font-size:12px;font-weight:600}.f-ngx{fill:var(--ng);font-size:12px;font-weight:600}
+.f-mu{stroke:var(--fg2s);stroke-width:1.2;fill:none}.f-bd{stroke:var(--fg);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.f-dash{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:4 3;fill:none}
+.f-curve{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linejoin:round}
+.f-box{fill:var(--fill);stroke:var(--sep)}.f-boxa{fill:var(--accentSoft);stroke:var(--accent)}
+.f-shade{fill:var(--accent);opacity:.12}.f-dot{fill:var(--accent)}.f-pt{fill:var(--ng)}
+.f-arr{fill:var(--fg2s)}
+@media (max-width:420px){h1{font-size:28px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-arr"/></marker></defs></svg>
+<nav class="nav" aria-label="目次"><div class="nav-in"><a href="#top">目次</a><a href="#c1">PPP</a><a href="#c2">G6PD欠損</a><a href="#c3">ウロン酸回路</a><a href="#c4">果糖</a><a href="#c5">頻出まとめ</a><a href="index.html">問題集へ</a></div></nav>
+<div class="wrap" id="top"><header class="top"><div class="eyebrow">横浜市立大学 医学部 生化学試験対策</div><h1>ペントースリン酸経路・ウロン酸回路・果糖代謝テキスト</h1><p class="byline">文責：矢作颯真</p></header>
+<div class="group"><p>NADPHの供給源であるPPP、G6PD欠損症、ウロン酸回路、フルクトース代謝を整理したテキストです。問題演習は<a href="index.html#s6">短答問題集</a>で。</p></div>
+<h2>目次</h2><div class="group list"><a href="#c1"><span class="no">1</span><span class="nm">ペントースリン酸経路（PPP）</span><span class="chev">›</span></a><a href="#c2"><span class="no">2</span><span class="nm">NADPHと赤血球・G6PD欠損症</span><span class="chev">›</span></a><a href="#c3"><span class="no">3</span><span class="nm">ウロン酸回路とグルクロン酸抱合</span><span class="chev">›</span></a><a href="#c4"><span class="no">4</span><span class="nm">フルクトース代謝</span><span class="chev">›</span></a><a href="#c5"><span class="no">5</span><span class="nm">頻出ポイントまとめ</span><span class="chev">›</span></a></div>
+<section class="ch" id="c1"><h2><span class="cn">1</span><span class="tt">ペントースリン酸経路（PPP）</span></h2><div class="card"><ul class="pts"><li>G6Pから始まり、<b>ATPは産生しない</b>。主な機能は2つ。</li><li>① <b>NADPH</b>の産生：脂肪酸・コレステロール・ステロイド・NO合成、還元型グルタチオン維持（抗酸化）、好中球のNADPHオキシダーゼ（殺菌）。</li><li>② <b>リボース5-リン酸</b>の生成（ヌクレオチド合成）。</li><li>電子伝達系でATPをつくるのはNADH（NADPHではない）。</li></ul><figure class="fig"><svg viewBox="0 0 400 276" role="img" aria-label="ペントースリン酸経路" style="max-width:400px"><rect x="10" y="10" width="220" height="32" rx="7" class="f-boxa"/><text x="120" y="31" class="f-hx2" text-anchor="middle">G6P</text><rect x="10" y="62" width="220" height="32" rx="7" class="f-box"/><text x="120" y="83" class="f-hx2" text-anchor="middle">6-ホスホグルコノラクトン</text><rect x="10" y="114" width="220" height="32" rx="7" class="f-box"/><text x="120" y="135" class="f-hx2" text-anchor="middle">6-ホスホグルコン酸</text><rect x="10" y="166" width="220" height="32" rx="7" class="f-boxa"/><text x="120" y="187" class="f-hx2" text-anchor="middle">リブロース5-P</text><rect x="10" y="218" width="220" height="32" rx="7" class="f-box"/><text x="120" y="239" class="f-hx2" text-anchor="middle">リボース5-P（核酸）／ F6P＋E4P</text><line x1="120" y1="42" x2="120" y2="62" class="f-mu" marker-end="url(#fa)"/><text x="240" y="56" class="f-wx">G6PD ／ NADPH 1個</text><line x1="120" y1="94" x2="120" y2="114" class="f-mu" marker-end="url(#fa)"/><text x="240" y="108" class="f-wx">ラクトナーゼ（加水分解）</text><line x1="120" y1="146" x2="120" y2="166" class="f-mu" marker-end="url(#fa)"/><text x="240" y="160" class="f-wx">6PGD ／ NADPH 1個＋CO₂</text><line x1="120" y1="198" x2="120" y2="218" class="f-mu" marker-end="url(#fa)"/><text x="240" y="212" class="f-wx">非酸化的段階（可逆）</text><text x="10" y="266" class="f-sm">G6P→リブロース5-P＝酸化的段階（不可逆）：NADPH×2、CO₂×1</text></svg><figcaption>G6P 1分子→リブロース5-Pの間にNADPH 2分子とCO₂ 1分子。非酸化的段階は可逆で、F6Pからもリボース5-Pを作れる。</figcaption></figure><div class="tbl"><table class=""><thead><tr><th>段階</th><th>性質</th><th>産物</th></tr></thead><tbody><tr><th>酸化的（G6P→Ru5P）</th><td><b>不可逆</b>、G6PDが律速</td><td>NADPH×2＋CO₂×1</td></tr><tr><th>非酸化的</th><td><b>可逆</b>（トランスケトラーゼ・トランスアルドラーゼ）</td><td><b>スタートはG6P、ゴールはF6P＋E4P</b>（講義）。リボース5-Pも生成。解糖の中間体に変換され、エネルギー産生や糖新生に利用</td></tr></tbody></table></div><p>G6P 3分子が酸化的段階を通ると、NADPH 6分子、CO₂ 3分子。</p></div><div class="ex"><div class="et">例題 1-1</div><p>PPPについて正しいのはどれか。<br>A ATPを産生する　B NADPHを産生し、リボース5-Pを供給する　C 嫌気的に起こる　D 非酸化的段階は不可逆　E CO₂は発生しない</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c2"><h2><span class="cn">2</span><span class="tt">NADPHと赤血球・G6PD欠損症</span></h2><div class="card"><p>赤血球ではPPPが<b>NADPHの唯一の供給源</b>。</p><p class="fm">G6PD欠損 → NADPH↓ → GSH↓ → H₂O₂蓄積 → 膜の酸化障害 → 溶血性貧血</p><ul class="pts"><li>H₂O₂は<b>グルタチオンペルオキシダーゼ</b>が還元型グルタチオン（GSH）を使って分解（2GSH＋H₂O₂→GSSG＋2H₂O）。</li><li>GSSGは<b>グルタチオンレダクターゼ</b>がNADPHを使ってGSHに戻す。</li><li>誘因：感染、<b>抗マラリア薬</b>などの薬剤、ソラマメなどの酸化ストレス。X連鎖潜性遺伝。</li></ul><div class="box cl"><div class="bt">臨床</div><p>20歳男性、抗マラリア薬の内服後に黄疸・暗赤色尿・貧血 → G6PD欠損症による溶血。</p></div></div><div class="ex"><div class="et">例題 2-1</div><p>G6PD欠損症で溶血が起こる機序はどれか。<br>A ATP産生低下　B NADPH低下によりGSHを維持できず酸化障害　C ヘム合成低下　D 解糖系の停止　E グロビン鎖の異常</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c3"><h2><span class="cn">3</span><span class="tt">ウロン酸回路とグルクロン酸抱合</span></h2><div class="card"><ul class="pts"><li>グルコース→G6P→G1P→<b>UDP-グルコース</b>（ここまでグリコーゲン合成と共通）→<b>UDP-グルクロン酸</b>。<b>ATPは産生しない</b>。</li><li>UDP-グルクロン酸の行き先：①<b>グルクロン酸抱合</b>（ビリルビン・薬物・ホルモン。水溶性が上がり尿・胆汁へ排泄）、②<b>GAG合成</b>（ヒアルロン酸・コンドロイチン硫酸・ヘパリン＝結合組織）、③アスコルビン酸合成。</li><li><b>ヒトは③の酵素をもたない</b> → ビタミンCは食事から摂取。</li><li>本態性ペントース尿症：ウロン酸経路の酵素欠損。</li></ul></div><div class="ex"><div class="et">例題 3-1</div><p>ヒトで進まないウロン酸回路の経路はどれか。<br>A グルクロン酸抱合　B GAG合成　C ビタミンC合成　D UDP-グルコース合成　E ビリルビン抱合</p><details><summary>答えを見る</summary><p><b>C</b>。</p></details></div></section>
+<section class="ch" id="c4"><h2><span class="cn">4</span><span class="tt">フルクトース代謝</span></h2><div class="card"><ul class="pts"><li>供給源：果物、はちみつ、清涼飲料水など。ショ糖（グルコース＋フルクトース）が多い。</li><li>代謝は主に<b>肝臓</b>。</li></ul><figure class="fig"><svg viewBox="0 0 420 216" role="img" aria-label="肝臓でのフルクトース代謝" style="max-width:420px"><rect x="10" y="10" width="210" height="32" rx="7" class="f-boxa"/><text x="115" y="31" class="f-hx2" text-anchor="middle">フルクトース</text><rect x="10" y="66" width="210" height="32" rx="7" class="f-box"/><text x="115" y="87" class="f-hx2" text-anchor="middle">フルクトース1-P</text><rect x="10" y="122" width="210" height="32" rx="7" class="f-box"/><text x="115" y="143" class="f-hx2" text-anchor="middle">DHAP ＋ グリセルアルデヒド</text><rect x="10" y="178" width="210" height="32" rx="7" class="f-box"/><text x="115" y="199" class="f-hx2" text-anchor="middle">DHAP ＋ GAP → 解糖</text><line x1="115" y1="42" x2="115" y2="66" class="f-mu" marker-end="url(#fa)"/><text x="230" y="58" class="f-wx">フルクトキナーゼ（−ATP）</text><line x1="115" y1="98" x2="115" y2="122" class="f-mu" marker-end="url(#fa)"/><text x="230" y="114" class="f-wx">アルドラーゼB</text><line x1="115" y1="154" x2="115" y2="178" class="f-mu" marker-end="url(#fa)"/><text x="230" y="170" class="f-wx">トリオースキナーゼ（−ATP）</text></svg><figcaption>フルクトースはPFK-1を通らず解糖の途中（トリオース）に入る。そのためPFK-1の調節を受けない。</figcaption></figure><ul class="pts"><li><b>PFK-1をバイパス</b>するため、ATP・クエン酸・AMPなどによる調節を受けず、大量摂取でも解糖下流に流れ続ける（→脂肪酸合成へ）。</li><li>グルコースはG6Pから、フルクトースは<b>F1P→DHAP・GAP</b>から解糖に入る。</li><li>遺伝性果糖不耐症：アルドラーゼB欠損（F1P蓄積、低血糖・肝障害）。本態性果糖尿症：フルクトキナーゼ欠損（無症状）。</li></ul><div class="box trap"><div class="bt">ひっかけ</div><p>フルクトース代謝のキナーゼは<b>フルクトキナーゼ</b>であって、ホスホフルクトキナーゼ-1ではない。</p></div></div><div class="ex"><div class="et">例題 4-1</div><p>スクロース0.2 molを加水分解して得られるグルコース・フルクトースは。<br>A 各0.1 mol　B 各0.2 mol　C 各0.4 mol　D グルコース0.4 mol のみ　E フルクトース0.2 molのみ</p><details><summary>答えを見る</summary><p><b>B</b>。</p></details></div></section>
+<section class="ch" id="c5"><h2><span class="cn">5</span><span class="tt">頻出ポイントまとめ</span></h2><div class="card"><div class="tbl"><table class="ox"><thead><tr><th>文</th><th>正誤</th></tr></thead><tbody><tr><td>PPPはATPを産生する</td><td class="x">×</td></tr><tr><td>PPPはNADPHとリボース5-Pを供給する</td><td class="o">○</td></tr><tr><td>PPPの酸化的段階は不可逆である</td><td class="o">○</td></tr><tr><td>非酸化的段階は可逆で、F6Pからリボース5-Pを作れる</td><td class="o">○</td></tr><tr><td>赤血球でNADPHを供給する唯一の経路はPPPである</td><td class="o">○</td></tr><tr><td>G6PD欠損では酸化ストレスで溶血しやすい</td><td class="o">○</td></tr><tr><td>GSSGからGSHへの還元にNADPHを要する</td><td class="o">○</td></tr><tr><td>ウロン酸回路でATPが産生される</td><td class="x">×</td></tr><tr><td>UDP-グルクロン酸はビリルビン抱合に使われる</td><td class="o">○</td></tr><tr><td>ヒトはビタミンCを合成できる</td><td class="x">×</td></tr><tr><td>フルクトースの代謝にはPFK-1の調節が及ぶ</td><td class="x">×</td></tr><tr><td>フルクトースは主に肝臓で代謝される</td><td class="o">○</td></tr></tbody></table></div><a class="go" href="index.html#s6">PPP・ウロン酸・果糖の短答問題を解く ›</a></div></section>
+<a class="back" href="#top">目次へ戻る</a><footer>PPP・果糖テキスト</footer></div>
+</body></html>
